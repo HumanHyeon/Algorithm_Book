@@ -1,0 +1,57 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+
+int n;
+bool areFriends[10][10];
+
+//taken[i] = i번째 학생이 이미 짝을 찾았으면 true, 아니면 false.
+
+int countPairings(bool taken[10]) {
+	//남은학생들 중 가장 번호가 빠른 학생을 찾는다.
+	int firstFree = -1;
+	for (int i = 0; i < n; ++i) {
+		if (!taken[i]) {
+			firstFree = i;
+			break;
+		}
+	}
+	//기저 사례 : 모든 학생이 짝을 찾았으면 한 가지 방법을 찾았으니 종료합니다.
+	if (firstFree == -1) return 1;
+	int ret = 0;
+	//이 학생과 짝을 지을 학생을 결정한다.
+	for (int pairWith = firstFree + 1; pairWith < n; ++pairWith) {
+		if (!taken[pairWith] && areFriends[firstFree][pairWith]) {
+			taken[firstFree] = taken[pairWith] = true;
+			ret += countPairings(taken);
+			taken[firstFree] = taken[pairWith] = false;			
+		}
+	}
+	return ret;
+}
+
+int main(void) {
+	bool test[10] = { true };
+	cout << "학생 수 입력 : ";
+	cin >> n;
+	cout << n<<endl;
+	for (int i = 0, j = 0; i < 10; i++) {
+		cout << i<<endl;
+		if (i >= n) { cout << "break합니다\n"; break; };
+		cout << "아직 i가 작다\n";
+		for (; j < 10; j++) {
+			if (j >= n) { cout << "j break합니다" << endl; break; };
+			cout << "아직 j가 작다\n";
+			cin >> areFriends[i][j];
+			cin.ignore();
+		}
+	}
+
+
+	cout<< countPairings(test);
+
+	getchar();
+	getchar();
+	return 0;
+}
+//출력하는 법을 몰라서 결과를 확인하지 못함 ^^,,
