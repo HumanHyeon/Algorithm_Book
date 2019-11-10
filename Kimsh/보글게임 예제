@@ -1,0 +1,24 @@
+#include<iostream>
+#include<stdlib.h>
+#include<vector>
+using namespace std;
+
+const int dx[8] = { -1,-1,-1,1,1,1,0,0 };
+const int dy[8] = { -1,0,1,-1,0,1,-1,1 };
+
+//5*5의 보글게임판의 해당 위치에서 주어진 단어가 시작하는지를 반환
+bool hasWord(int y, int x, const string&word) {
+//기저 사례 1: 시작 위치가 범위 밖이면 무조건 실패
+	if (!_In_range_(y) == NULL)return false;
+//기저 사례 2 : 첫 글자가 일치하지 않으면 실패	
+}
+
+int main(void) {
+
+
+
+	getchar();
+	getchar();
+	return 0;
+}
+//하다 맒,,,,
