@@ -4,8 +4,8 @@ using namespace std;
 #define RANGE BOARD_SIZE < x || y > BOARD_SIZE || x < 0 || y < 0
 
 char board[BOARD_SIZE][BOARD_SIZE] = {
-		{'U', 'R', 'X', 'P', 'M'},	
-		{'X', 'P', 'R', 'L', 'T'},	//R L
+		{'U', 'R', 'L', 'P', 'M'},  //L
+		{'X', 'P', 'R', 'X', 'T'},	//R
 		{'G', 'I', 'A', 'E', 'T'},	//G I
 		{'X', 'T', 'N', 'Z', 'Y'},
 		{'X', 'O', 'Q', 'R', 'S'}
@@ -25,7 +25,7 @@ bool hasWord(int y, int x, string word) {
 	}
 	if (word.size() == 1)	return true;	//글자가 하나면 참
 
-	for (int direction = 0; direction < BOARD_SIZE; ++direction) {
+	for (int direction = 0; direction < 8; ++direction) {
 		int nextY = y + dy[direction], nextX = x + dx[direction];
 		if (hasWord(nextY, nextX, word.substr(1)))
 			return true;
@@ -46,7 +46,7 @@ int main()
 		}
 		if (isTrue) break;
 	}
-		
+
 
 	cout << findStr << " is " << isTrue;
 }
