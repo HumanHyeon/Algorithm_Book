@@ -1,0 +1,41 @@
+#include<iostream>
+#include<stdlib.h>
+#include<vector> //벡터 처음보누 ;;;
+
+using namespace std; //std:: 쓰기 싫으면 미리 써놓자.
+// n : 전체 원소의 수
+// picked : 지금까지 고른 원소들의 번호
+// toPick : 더 고를 원소의 수
+// 일 때, 앞으로 toPick개의 원소를 고르는 모든 방법을 출력한다.
+
+void printPicked(vector<int> p) {
+	cout << "시작 ";
+	for (int i = 0; i < p.size(); i++) {
+		cout << p.at(i)<< " ";
+	}
+	cout << endl;
+}
+
+void pick(int n, vector<int>& picked, int toPick) {
+	//기저 사례 : 더 고를 원소가 없을 때 고른 원소들을 출력한다.
+	if (toPick == 0) { printPicked(picked); return; }
+	//고를 수 있는 가장 작은 번호를 계산한다
+	int smallest = picked.empty() ? 0 : picked.back() + 1; // smallest는 'picked가 비어있느냐' 가 true 이면 0, false이면 picked의 마지막 원소에 1을 더한 수이다.
+	//이 단계에서는 원소를 하나 고른다.
+	for (int next = smallest; next < n; ++next) {
+		picked.push_back(next); // 마지막 원소 뒤에 next를 삽입.
+		pick(n, picked, toPick - 1);// 더 고를 원소의 수를 하나 줄이고 재귀돌린다
+		picked.pop_back(); //picked의 마지막 원소를 제거한다.
+	}
+}
+int main(void) {
+	vector <int> v;
+	pick(6, v, 2);	
+	
+
+	getchar();
+	getchar();
+	return 0;
+}
+//와!! 되긴 되는데 무슨 의민지 모르겠다!!
+//대애애애애애충은 감옴 제대로는 모르겠다
