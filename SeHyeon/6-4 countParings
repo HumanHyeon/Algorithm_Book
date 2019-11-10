@@ -14,8 +14,8 @@ int countPairings(bool taken[10]) {
 	int ret = 0;
 
 	for (int i = 0; i < n; i++) {
-		for (int j = i; j < n; j++) {
-			if (!taken[i] && !taken[j] && areFriends[i][j]) {
+		for (int j = i + 1; j < n; j++) {
+			if (!taken[j] && areFriends[i][j]) {
 				taken[i] = taken[j] = true;
 				ret += countPairings(taken);
 				taken[i] = taken[j] = false;
