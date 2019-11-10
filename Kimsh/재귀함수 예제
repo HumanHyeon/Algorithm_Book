@@ -1,0 +1,52 @@
+#include<iostream>
+#include<stdlib.h>
+
+using namespace std; //std:: 쓰기 싫으면 미리 써놓자.
+
+int sum(int n) {//그냥 더하는 함수
+
+	int ret = 0; //초기값 ret은 0이다
+
+	for (int i = 1; i <= n; i++) { //i의 초기값은 1이고, i가 n보다 작거나 같은 동안 반복문을 반복한다.
+		ret += 1; //ret의 값을 1 늘린다.	
+	}
+
+	return ret; //ret의 값을 반환한다.
+}
+
+
+int recursiveSum(int n) {//재귀 누적sum함수
+
+	if (n == 1) return 1; // 재귀의 마지막에 1을 출력하고 함수를 끝낸다.
+	return n + recursiveSum(n - 1); // 재귀되는 함수의 매개변수가 1이 아닐 경우(마지막이 아닐 경우)n-1재귀 함수를 실행시킨 후 n의 값에 더한다.
+}
+
+
+int sum1(int n) {//recursive를 사용하지 않고 우리가 원하는 결과를 출력해내는 함수
+
+	int ret = 0; //초기값 ret은 0이다
+	int sum = 0; //sum이라는 변수를 추가해 주어야 하는 번거로움이 있다.
+
+	for (int i = 1; i <= n; i++) { //i의 초기값은 1이고, i가 n보다 작거나 같은 동안 반복문을 반복한다.
+		ret += 1; //ret의 값을 1 늘린다.	
+		sum += ret; //sum에 ret값을 더한다.
+	}
+
+	return sum; //ret의 값을 반환한다.
+}
+
+int main(void) {
+
+	cout <<"sum\t\t"<< sum(5)<< endl; //sum함수의 값을 출력한다.
+	//굳이 recursive하지 않고도 1부터 n까지의 숫자들의 합을 구할 수 있다.
+
+	cout <<"recursiveSum\t"<< recursiveSum(5)<<endl; //recursiveSum함수의 값을 출력한다.
+
+	cout <<"sum1\t\t"<< sum1(5); //sum1함수의 값을 출력한다.
+
+
+
+	getchar(); //f5키를 이용한 디버그 및 run 시 결과도 보여주지 않고 튕기는 현상을 방지하기 위한 방법.
+	getchar();
+	return 0;//메인문의 종료시 종료문을 넣어준다.
+}
