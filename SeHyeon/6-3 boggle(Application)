@@ -32,7 +32,7 @@ int main()
 	for (int selectBoard = 0; selectBoard < createBoard; selectBoard++) {	//Acess board
 		int wordCount = 0, longWordIndex = -1, score = 0;
 		bool presence = false;
-		for (int selectWord = 0; selectWord < createWord; selectWord++) {	//해당보드판에 대해 단어 검색
+		for (int selectWord = 0; selectWord < createWord; selectWord++) {	//Search word at now board
 			string findWord = dic[selectWord];
 			
 			bool isTrue;
@@ -121,5 +121,3 @@ int scoreCalc(int wordLength) {
 	}
 	return score;
 }
-
-//길이가 3이하인 경우를 찾더라도 count는 증가를 해야만 한다
