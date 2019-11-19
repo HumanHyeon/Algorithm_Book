@@ -1,78 +1,291 @@
-#include<stdio.h>
+
+//어 거 되긴 되는데 줄이 많이 기네여,, 최대한 주석 많이 달아놓은 버전
+
 #include<iostream>
 #include<string>
+#include<array>
+#include<Windows.h>
+#include<time.h>
+#pragma warning(disable:4996)
+
 using namespace std;
-int w = 0; //단어 사전에 들어 있는 단어의 수(1<w<300000)
-string words[];//이후 w개 줄에 words안에 있는 단어들이 출력됩니다.
 
 
-int dx[8] = {-1,-1,-1,1,1,1,0,0}; 
-int dy[8] = { -1,-1,0,-1,1,0,-1,1 }; //이동할 좌표
-int index = 0;
-string Find[];
+
+int dx[8] = {-1,-1,-1,0,0,1,1,1}; 
+int dy[8] = { -1,0,1,-1,1,-1,0,1 };
+int index = 0;//단어 내에서의 위치
+
+string Find[50] = {"단어를 찾지 못함"};
 
 int b = 0; //Boggle 보드의 개수 (1<b<30)
-string Board[4][4]=
-					{
-					{"W","O","R","D"},
-					{"I","E","E","O"},
-					{"D","C","T","G"},
-					{"E","D","E","R"}
-					};
-int max = 0;
-string Long = "";
-int cnt = 0;
+
+char Board[4][4]= { '\0', };//전부 공백 문자로 초기화
+char Mem[4][4] = { '\0', }; //Board값을 저장해 둘 공간
+
+					
+int max_num = 0; //얻을 수 있는 최대 점수
+string Long[20] = { "\0" ,}; // 찾은 단어들 중 가장 긴 단어
+int cnt = 0; // 찾을 수 있는 최대한의 단어 개수
+int words_size = 0;//words 배열의 크기
+
+string words[50] = { "단어 입력이 되지 않음", }; //words안에 있는 단어들이 출력됩니다.
+
+void FindWords(int, int);
+
 
 int main(void) {
 
-	int x = 0;//행
-	int y = 0;//열
 
-	 cin >> w;
-	 for (int i=0; i < w; i++) {
-		 cin >> words[i];
+
+
+	int x = 0;
+	int y = 0;
+	int repeat = 0;
+	int w = 0;
+
+
+	cout << "\n게임 반복 횟수 : ";
+	cin >> repeat; 
+
+
+	 for (int i = 0; i < repeat; i++) {//repeat 횟수만큼 게임을 반복
+
+		 cout <<"\n--------------"<< i+1 << "번째 게임을 시작합니다"<<"---------------\n\n";
+ 
+		 srand((unsigned int)time(0));
+		 for (int i = 0; i < 4; i++) {
+			 for (int j = 0; j < 4; j++) {
+				 Board[i][j] = 'A' + (rand() % 26);
+				 Mem[i][j] = Board[i][j];//Mem안에 Board의 데이터를 저장해 놓습니다.
+			 }
+		 } //랜덤으로 받는게 맞는건지 모르겟슴 ;;
+
+		 for (int i = 0; i < 4; i++) {
+			 for (int j = 0; j < 4; j++) {
+				 cout << Board[i][j] << " ";
+			 }
+			 cout << "\n";
+		 }//보기 힘들어서 그냥 보여주고 시작함
+
+
+		 cout << "\n";
+		
+		 cout << "들어갈 단어의 개수 : ";
+		 cin >> w;//들어갈 단어의 개수를 정합니다.
+		 cout << "\n";
+
+		 fill_n(words, 50, '\0'); //게임 시작 시마다 words를 초기화합니다.
+		 fill_n(Find, 50, '\0'); //게임 시작 시마다 Find를 초기화합니다.
+		 fill_n(Find, 0, "단어를 찾지 못함");
+
+		 max_num = 0;
+		 words_size = 0;
+		 fill_n(Long, 20, "\0"); //게임 시작 시마다 각 변수들도 초기화해 줍니다.
+
+		 cin.ignore();//n-1번째 게임의 맨 마지막으로부터 들어올 모든 입력을 초기화 해 줍니다.
+
+		 while (1) { //boggle 판에서 찾을 단어들을 입력받는 부분입니다.
+			 char ch[11] = {'\0',};
+			 cin.getline(ch,9); //한줄씩 입력받습니다. enter입력 시 다음 index로 넘어갑니다.
+			 words[words_size] = (string)ch; //words의 현재 단어를 넣을 index에 단어를 넣습니다.
+
+			 if (ch[0]=='\0') {
+				 //다른 입력 없이 엔터만 입력받았을 경우 늘어난 index수(words의 크기)를 다시 줄이고 반복문을 빠져나옵니다.
+				 words_size -= 1;
+//				 cout <<words_size+1<< "개의 입력을 완료하였습니다.\n";
+				 break;
+			 }else if(words_size >= w-1) {//단어가 w개만큼 들어갔을 경우 words_size를 건드리지 않고 반복문을 빠져나옵니다.
+//				 cout << words_size + 1 << "개의 입력을 완료하였습니다.\n";
+				 break;
+			  }
+			 fill_n(ch,9,'\0');//엔터를 누를 때마다 입력받는 변수 ch를 공백문자로 초기화해줍니다.
+			 words_size += 1;//입력을 받았으니 words의 크기(또는 단어를 받을 인덱스값)를 늘려줍니다.
+
+		}
+
+
+		 cout << "\n";
+		 FindWords(x,y);//함수를 실행합니다. 얘가 ㄹㅇ 진또배기
+		 cout << "\n";
+		 cout << "얻을 수 있는 최대 점수 : " << max_num << "\n";
+		 cout << "가장 긴 단어 : ";
+		 for (int i = 0; i < (sizeof(Long) / sizeof(string)); i++) {
+			 cout << Long[i];
+			 if (!(Long[i].length()==0)&&!(Long[i+1].length() == 0)) {
+				 cout << ", ";
+			 }
+		 }
+		 
+		 cout << "\n찾은 단어의 개수 : " << cnt << "\n\n";
 	 }
-	 FindWords(x,y);
-	 cout << "\n";
-	 cout << "얻을 수 있는 최대 점수 : "<<max<<"\n";
-	 cout << "가장 긴 단어 : " << Long<<"\n";
-	 cout << "찾은 단어의 개수 : " << "\n";
-	
 
 
-	getchar();
-	getchar();
+	 getchar();
 	return 0;
 }
-void FindWords(int x,int y) {
-	//1. 본인이 있던 위치로 반대로 돌아가선 안된다.
-	//2. 끝까지 다 돌았을 때 반복문을 나와야 한다.
-	//(0,0)부터 시작하여 찾는 단어의 앞글자인지 계속 확인. 그리고 찾으면 그 다음 글자 찾고, 그다음 찾으면 그 다음 글자 찾고.. 만약 없다면 찾기 중단
+
+void FindWords(int x,int y) {//매개변수는 가변 x와 y 좌표입니다. 자신 주변 글자를 찾을 때 사용할 겁니다.
+
+	/*
+	함수를 돌릴 시 반드시 지켜야 할 항목들입니다.
+
+	1. 본인이 있던 위치로 반대로 돌아가선 안된다.
+	2. 끝까지 다 돌았을 때 반복문을 나와야 한다.
 	
-	for (int k = 0; k < w; k++) { //단어별로 찾습니다.
-		cout << "단어를 찾습니다 : " << words[k] << "\n";
+	(0,0)부터 시작하여 찾는 단어의 앞글자인지 계속 확인. 그리고 찾으면 그 다음 글자 찾고, 그다음 찾으면 그 다음 글자 찾고.. 만약 없다면 찾기 중단
+	*/
+	for (int k = 0; k <= words_size; k++) { //k가 단어의 개수보다 작은 동안!
 
-		while (!(index == words[k].size)) { //index의 크기가 k번째 단어의 크기를 넘지 않았을 때
-			int i = 0;
-			if ((x == 4) && (y == 4)) { //x와 y의 크기가 배열의 크기를 넘었을 경우
-				cout << "단어를 찾지 못하였습니다.";
-				break;
-			}
-			if (Board[x][y].begin == words[k].at(index)) {
-				cout << k << "번째 문자열 찾음";
-				index++;
-			}
-			else {
-				x += dx[i]; //dx만큼 좌표를 변경합니다
-				y += dy[i]; //dy만큼 좌표를 변경합니다
-				i++;
-			}
+			int findx = 0;
+			int findy = 0;//현재의 x좌표와 y좌표를 기억하고 있을 공간입니다. 지금 나의 위치입니다.
+
+			int xsize = sizeof(dx) / sizeof(int);
+			int ysize = sizeof(dy) / sizeof(int); //dx와 dy의 크기입니다. 쉽게 쓰면 8입니다.
 
 
+			bool cntischanged = false; //cnt가 변경되었는지 확인합니다.
+			int length = words[k].length(); //k번째 단어의 길이를 변수로 받았습니다.
+											//		cout <<k+1<< "번째 단어를 찾습니다 : " << words[k] << "\n\n";
+
+			int i = 0;//dx와 dy의 index위치.
+
+
+
+			while (index < length) { //index의 크기가 k번째 단어의 크기를 넘지 않았을 때
+
+									 //			cout << "Board[x][y] : " << Board[x][y] <<"\n";
+									 //			cout << "탐색 중인 글자 "<<words[k].at(index)<<"\n\n";
+				if ((index == length - 1) && ((i >= xsize) && (i >= ysize))) {
+					//맨 마지막 글자에서 주위 탐색까지 마쳤을 때 = (3,3)위치에서 dx와 dy가 8인 상태
+
+					//				cout << "단어를 찾지 못하였습니다.\n\n";
+					break;
+				}
+				else if ((i >= xsize) && (i >= ysize)) {//맨 마지막 위치는 아니지만 주위 탐색을 마쳤을 때
+														//				cout << "dx,dy 한바퀴 다 돌림\n";
+					findy += 1; //현재 y좌표의 값을 1만큼 늘립니다.
+					i = 0; //처음부터 다시 탐색합니다.
+					continue;
+				}
+				else if (x < 0 || y < 0) {
+					//				cout << "Board의 범위를 넘어섬! \n\n";
+					x = findx;
+					y = findy;//현재 위치로 계속 초기화 해 주지 않으면 애가 이리저리 옮겨다닙니다.
+
+							  //				cout << "i :" << i << "\n";
+							  //				cout << "(" << x <<", " << y << ")\n\n";
+							  //				cout << "dx :" << dx[i] << " y: " << dy[i] << "\n";
+
+					x += dx[i]; //dx만큼 좌표를 변경합니다
+					y += dy[i]; //dy만큼 좌표를 변경합니다
+								//				cout << "(" << x << ", " << y << ")\n\n";
+
+					++i;
+					continue; //다음 반복문을 실행합니다.
+				}
+
+				if (Board[x][y]/*Board 안의 글자를 받아서*/ == words[k].at(index)/*words안의 index번째 단어와 비교합니다*/) {
+
+					//				cout << "i : " << i << "\n";
+
+					//				cout << index+1 << "번째 글자 찾음\n";
+					//				cout << "(" << x << ", " << y << ")\n\n";
+
+					Board[x][y] = '0'; //한 번 찾은 곳은 다른 문자로 변경합니다.
+					index++; //문자열을 찾았을 경우 words[k]의 다음 글자를 탐색합니다.
+					findx = x;
+					findy = y;
+
+					i = 0;//i를 초기화 시킵니다.
+				}
+				else {//만약 찾지 못했다면 좌표 변경 후 그 자리의 글자와 비교합니다.
+					  //				cout << "i :" << i << "\n";
+					x = findx;
+					y = findy;
+
+					//				cout << "(" << x << ", " << y << ")\n";
+					//				cout << "dx :" << dx[i] << " dy: " << dy[i] << "\n";
+
+					//				cout <<index+1<< "번째 글자 찾기 실패. 다음 좌표로 넘어갑니다\n";
+
+					x += dx[i]; //dx만큼 좌표를 변경합니다
+					y += dy[i]; //dy만큼 좌표를 변경합니다
+								//				cout << "(" << x << ", " << y << ")\n\n";
+
+								//				cout << "현재 위치 : " << Board[x][y] << "\n";
+
+
+					i++; //못찾았으니 x와 y의 좌표를 변경시키고 i를 증가시킵니다.
+				}
+
+			}
+
+			if (index >= length) {//해당 단어의 index가 k번째 words의 길이와 같으면 단어 찾기 성공
+								  //index의 크기가 k번째 단어의 크기를 넘겼을 때(단어를 찾았다 이말이야!)
+
+				Find[cnt] = words[k]; //찾은 단어 목록의 cnt번째 안에 k번째 단어를 넣습니다.
+				if (!cntischanged) {
+					cnt++; //cnt가 변경된 적이 없다면 cnt를 증가시킵니다.
+				}		
+
+					switch (index) { //max_num을 계산합니다
+					case 1:
+					case 2: {
+						max_num += 0;
+					}break;
+					case 3:
+					case 4: {
+						max_num += 1;
+					} break;
+					case 5: {
+						max_num += 2;
+					}break;
+					case 6: {
+						max_num += 3;
+					}break;
+					case 7: {
+						max_num += 5;
+					}break;
+					case 8: {
+						max_num += 11;
+					}break;
+
+					default: break;
+					}
+					index = 0; //다음 단어를 찾도록 index를 초기화 시킵니다.
+					x = 0;
+					y = 0; //Board의 위치도 마찬가지로 초기화 시킵니다
+
+						   //여기서부턴 Long을 구하는 과정입니다.
+					int Find_length = sizeof(Find) / sizeof(string);
+					for (int i = 0, j = 1 , max = 0; i < Find_length; i++) {
+						if (Find[i].length() > Find[max].length()) {//max위치의 단어보다 i위치의 단어가 더 길 경우 
+							max = i;
+							Long[0] = Find[max]; //Long은 max 위치에 있는 녀석이 차지합니다.
+						}
+						else if(Find[i].length() == Find[max].length()){
+							Long[0 + j] = Find[i];
+							j++;
+						}
+					}
+				}
+				else {//k번째 단어를 찾지 못했을 때
+
+					index = 0; //다음 단어를 찾도록 index를 초기화 시킵니다.
+					x = 0;
+					y = 0;//Board의 위치도 마찬가지로 초기화 시킵니다
+
+				}
+			}
+			
+		//단어 하나를 다 찾았으면 여기저기 0으로 빵꾸난 구멍을 다시 복구해야 합니다.
+		for (int i = 0; i < 4;i++) {
+			for(int j = 0; j < 4; j++) {
+				Board[i][j] = Mem[i][j];
+			}
 		}
-			 //index의 크기가 k번째 단어의 크기를 넘겼을 때(단어를 찾았다 이말이야!)
-				Find[cnt] = words[k]; //찾은 단어 목록에 cnt번째 안에 k번째 단어를 넣습니다.
-				cnt++; //cnt를 증가시킵니다.		
+	}
 	
-		}
-}
+
+
