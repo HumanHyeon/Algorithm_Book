@@ -1,0 +1,242 @@
+#include<iostream>
+#include<string>
+#include<array>
+#include<Windows.h>
+#include<time.h>
+#pragma warning(disable:4996)
+
+using namespace std;
+
+int dx[8] = {-1,-1,-1,0,0,1,1,1}; 
+int dy[8] = { -1,0,1,-1,1,-1,0,1 };
+int index = 0;
+
+string Find[50] = {"단어를 찾지 못함"};
+
+int b = 0;
+
+char Board[4][4]= { '\0', };
+char Mem[4][4] = { '\0', };
+
+					
+int max_num = 0; 
+string Long[20] = { "\0" ,}; 
+int cnt = 0; 
+int words_size = 0;
+
+string words[50] = { "단어 입력이 되지 않음", }; 
+
+void FindWords(int, int);
+
+
+int main(void) {
+
+
+
+
+	int x = 0;
+	int y = 0;
+	int repeat = 0;
+	int w = 0;
+
+
+	cout << "\n게임 반복 횟수 : ";
+	cin >> repeat; 
+
+
+	 for (int i = 0; i < repeat; i++) {
+
+ 
+		 srand((unsigned int)time(0));
+		 for (int i = 0; i < 4; i++) {
+			 for (int j = 0; j < 4; j++) {
+				 Board[i][j] = 'A' + (rand() % 26);
+				 Mem[i][j] = Board[i][j];
+			 }
+		 } 
+
+		 for (int i = 0; i < 4; i++) {
+			 for (int j = 0; j < 4; j++) {
+				 cout << Board[i][j] << " ";
+			 }
+			 cout << "\n";
+		 }
+
+
+		 cout << "\n";
+		
+		 cin >> w;
+		 cout << "\n";
+
+		 fill_n(words, 50, '\0');
+		 fill_n(Find, 50, '\0'); 
+		 fill_n(Find, 0, "단어를 찾지 못함");
+
+		 max_num = 0;
+		 words_size = 0;
+		 fill_n(Long, 20, "\0"); 
+
+		 cin.ignore();
+
+		 while (1) {
+			 char ch[11] = {'\0',};
+			 cin.getline(ch,9); 
+			 words[words_size] = (string)ch; 
+
+			 if (ch[0]=='\0') {
+				 words_size -= 1;
+				 break;
+			 }else if(words_size >= w-1) {
+				 break;
+			  }
+			 fill_n(ch,9,'\0');
+			 words_size += 1;
+
+		}
+
+
+		 cout << "\n";
+		 FindWords(x,y);
+		 cout << "\n";
+		 cout << "얻을 수 있는 최대 점수 : " << max_num << "\n";
+		 cout << "가장 긴 단어 : ";
+		 for (int i = 0; i < (sizeof(Long) / sizeof(string)); i++) {
+			 cout << Long[i];
+			 if (!(Long[i].length()==0)&&!(Long[i+1].length() == 0)) {
+				 cout << ", ";
+			 }
+		 }
+		 
+		 cout << "\n찾은 단어의 개수 : " << cnt << "\n\n";
+	 }
+
+
+	 getchar();
+	return 0;
+}
+
+void FindWords(int x,int y) {
+
+	for (int k = 0; k <= words_size; k++) { 
+
+			int findx = 0;
+			int findy = 0;
+
+			int xsize = sizeof(dx) / sizeof(int);
+			int ysize = sizeof(dy) / sizeof(int); 
+
+
+			bool cntischanged = false; 
+			int length = words[k].length(); 
+
+			int i = 0;
+
+
+
+			while (index < length) { 
+
+				if ((index == length - 1) && ((i >= xsize) && (i >= ysize))) {
+					break;
+				}
+				else if ((i >= xsize) && (i >= ysize)) {
+					findy += 1; 
+					i = 0; 
+					continue;
+				}
+				else if (x < 0 || y < 0) {
+					x = findx;
+					y = findy;
+
+					x += dx[i]; 
+					y += dy[i]; 
+
+					++i;
+					continue;
+				}
+
+				if (Board[x][y] == words[k].at(index)) {
+
+					Board[x][y] = '0'; 
+					index++; 
+					findx = x;
+					findy = y;
+
+					i = 0;
+				}
+				else {
+
+					x = findx;
+					y = findy;
+					x += dx[i]; 
+					y += dy[i]; 
+					i++; 
+				}
+
+			}
+
+			if (index >= length) {
+
+				Find[cnt] = words[k]; 
+				if (!cntischanged) {
+					cnt++; 
+				}		
+
+					switch (index) { 
+					case 1:
+					case 2: {
+						max_num += 0;
+					}break;
+					case 3:
+					case 4: {
+						max_num += 1;
+					} break;
+					case 5: {
+						max_num += 2;
+					}break;
+					case 6: {
+						max_num += 3;
+					}break;
+					case 7: {
+						max_num += 5;
+					}break;
+					case 8: {
+						max_num += 11;
+					}break;
+
+					default: break;
+					}
+					index = 0; 
+					x = 0;
+					y = 0; 
+
+						   
+					int Find_length = sizeof(Find) / sizeof(string);
+					for (int i = 0, j = 1 , max = 0; i < Find_length; i++) {
+						if (Find[i].length() > Find[max].length()) { 
+							max = i;
+							Long[0] = Find[max]; 
+						}
+						else if(Find[i].length() == Find[max].length()){
+							Long[0 + j] = Find[i];
+							j++;
+						}
+					}
+				}
+				else {
+
+					index = 0; 
+					x = 0;
+					y = 0;
+
+				}
+			}
+			
+		for (int i = 0; i < 4;i++) {
+			for(int j = 0; j < 4; j++) {
+				Board[i][j] = Mem[i][j];
+			}
+		}
+	}
+	
+
+
