@@ -1,0 +1,87 @@
+//입력밖에 안해놓음 ^--^,,
+// algorithm_clock_sync.cpp : 콘솔 응용 프로그램에 대한 진입점을 정의합니다.
+
+//시계 12시로 전부 맞추기 문제입니다.
+/*
+0번    0,1,2			5번    0,2,14,15
+1번    3,7,9,11			6번    3,14,15
+2번    4,10,14,15		7번    4,5,7,14,15
+3번    0,4,5,6,7		8번    1,2,3,4,5
+4번    6,7,8,10,12		9번    3,4,5,9,13
+*/
+
+#include "stdafx.h"
+#include<stdio.h>
+#include<iostream>
+#include<time.h>
+#pragma warning(disable:4996)
+using namespace std;
+
+int 시계[4][4];
+int cng[4][4];// 몇 번 조작되어야 0이 되는지를 표시함.
+int btn[10][5] = { //버튼 10개
+	{1,2,3,0,},
+	{4,8,10,12,0,},
+	{5,11,15,16,0},
+	{1,5,6,7,8},
+	{7,8,9,11,13},
+	{1,3,15,16},
+	{4,15,16},
+	{5,6,8,15,16},
+	{2,3,4,5,6},
+	{4,5,6,10,14}
+};
+int cnt = 0;
+void make_clock(int 시계[4][4]); //시계를 만들어 주는 함수
+void cnt_cng();
+
+int main()
+{
+	make_clock(시계);
+	
+	cout << "********생성된 시계를 보여줍니다.*********\n\n";
+	for (int i = 0; i < 4; i++) {
+		cout << "\t";
+		for (int j = 0; j < 4; j++) {
+			cout << 시계[i][j] << "\t";
+		}
+		cout << "\n";
+	}
+
+	cout << "\n********\tcng\t*********\n\n";
+	for (int i = 0; i < 4; i++) {
+		cout << "\t";
+		for (int j = 0; j < 4; j++) {
+			cout << cng[i][j] << "\t";
+		}
+		cout << "\n";
+	}
+
+	return 0;
+}
+
+void make_clock(int 시계[4][4]) { // 랜덤으로 시계를 만들어 줍니다.  0: 12시 / 3: 3시 / 6: 6시 / 9: 9시
+	
+	srand((unsigned int)time(0));
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			int t = rand() % 4;
+			시계[i][j] = t*3;
+			if (t == 0) {
+				cng[i][j] = 0;
+			}else{
+				cng[i][j] = 4 - t; //바뀌어야 하는 횟수??
+			}
+		}
+	}
+}
+
+void cnt_cng() {
+	bool end = false;
+	while (end == false) {
+
+	}
+
+}
+
+
