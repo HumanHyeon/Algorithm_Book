@@ -112,7 +112,11 @@ void cnt_cng() {
 			}
 			else {//해당 index의 값이 0이라면 -1이 되므로 버튼 카운트 하지 않아야함.
 				cnt -= 1;
-				cng = cng_tmp; // 상태 원상복귀 시키기
+				for (int a = 0; a < 4; a++) {
+					for (int b = 0; b < 4; b++) {
+						cng[a][b] = cng_tmp[a][b];
+					}
+				}
 				break;
 			}
 		}
