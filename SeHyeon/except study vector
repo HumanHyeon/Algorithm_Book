@@ -55,3 +55,13 @@ int main() {
 	return 0;
 
 }
+
+<output>
+vector front value : 1
+vector end value : 4
+vector opeartor[] : 4
+vector at : 4
+vector size : 4
+Is it empty? : No
+vector begin value : 1
+1 2 3 4
