@@ -1,0 +1,78 @@
+// mailprogramming_1226.cpp : 콘솔 응용 프로그램에 대한 진입점을 정의합니다.
+//
+
+#include "stdafx.h"
+#include<iostream>
+#include<stdio.h>
+#include<math.h>
+#include<conio.h>
+#pragma warning(disable:4996)
+using namespace std;
+
+//정수(int)가 주어지면, 팰린드롬(palindrome)인지 알아내시오. 
+//팰린드롬이란, 앞에서부터 읽으나 뒤에서부터 읽으나 같은 단어를 말합니다. 단, 정수를 문자열로 바꾸면 안됩니다.
+int num[] = { 0, };
+int sim1[] = { -1, };
+int sim2[] = { -1, };
+
+int main()
+{
+	int i = 0;
+	int j = 0;
+	int g = 0;
+	bool ispalindrome = true;
+
+
+
+	cout << "숫자를 입력해 주세요.(엔터키 입력 시 종료.)\n";	
+	cin >> g;
+
+	while (g!=0) {
+		if (g < 0) {
+			cout << "\n이 숫자열은 팰린드롬이 아닙니다.\n"; return 0;
+		}
+		else { num[i] = g % 10; }
+		g /= 10;
+		i++;
+	}
+	
+	/*
+	while (true) {
+			cout << i+1<< "번째 반복\n";
+
+			cout << "i : " << i << "\n";
+
+			scanf(" %1d", &num[i]);
+
+
+			cout << "num[" << i << "] :" << num[i] << " ";
+			if (num[i] == '\0')break;
+			i++;
+
+			cout <<"size : "<< sizeof(num)/sizeof(int)<<" ";
+			
+	} 
+	 //시도해 보았으나 잘 안됨..
+	 */
+	
+	int front = (int)i/2;
+
+	for (int n = 0; n < front; n++) {
+		
+		if (num[i-n-1] != 0) {
+			sim2[n] = num[i-n-1];
+		}
+			sim1[n] = num[n];
+
+		if (sim1[n] != sim2[n]) {
+			ispalindrome = false; break;
+		}
+	}
+
+
+
+	if (ispalindrome == true) { cout<<"\n이 숫자열은 팰린드롬이 맞습니다.\n"; }
+	else { cout << "\n이 숫자열은 팰린드롬이 아닙니다.\n"; }
+	getchar();
+    return 0;
+}
