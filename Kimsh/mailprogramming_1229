@@ -1,0 +1,61 @@
+// mailprogramming_1229.cpp : 콘솔 응용 프로그램에 대한 진입점을 정의합니다.
+//
+
+#include "stdafx.h"
+#include<stdio.h>
+#include<iostream>
+#pragma warning(disable:4996)
+using namespace std;
+int n = 0;
+int target= 0;
+int index1 = 0;	int index2 = 0;
+int arr[] = { 0, };
+//정수 배열과 타겟 숫자가 주어지면, 합이 타겟값이 되는 두 원소의 인덱스를 찾으시오.
+//단, 시간복잡도 O(n) 여야 합니다.
+void find_target();
+
+int main()
+{
+	cout << "정수 몇 개를 넣을지 받음 : ";
+	cin >> n;
+	cout << "input : [";
+	for (int i=0;i<n;i++) {
+		cin >> arr[i];
+		cin.ignore(2, ',');
+	}
+	cout << "]\n";
+		cout << "타겟 ";	cin >> target;
+
+	find_target();
+
+	if (index2 == 0) {
+		cout << "그런거 없음...\n";
+	}else
+	cout << "\nOutput : [" << index1 << ", " << index2 << "]\n";
+
+    return 0;
+}
+
+void find_target() {
+	cout << "target : " << target<<"\n";
+	for (int i = 0; i<n; i++) {
+		cout << arr[i] << " ";
+	}
+	cout << "\n";
+	int r = 1;
+	for (int i = 0; i < n; i++) {
+		cout << "[" << i << ", "<<i+r<< "] 인덱스의 계산을 시작 ...\n";
+		if (!((i + r) == n)) { //현재 인덱스 + 더한 인덱스가 배열의 최대 인덱스를 초과하지 않았을 경우
+			int sum = 0;
+			sum += (arr[i] + arr[i + r]);
+			cout << "arr[i] : "<<arr[i]<<" arr[i+r] : "<<arr[i+r]<<"\n" ;
+			cout <<"sum = "<< sum<<"\n";
+			if (sum != target) {//더한 값이 target과 동일하지 않은 경우
+				i -= 1; r += 1; //i는 다시 시작하고 r은 그 다음으로 넘어감.
+				cout << "target값과 동일하지 않음...\n\n";
+			}
+			else { cout << "target값 찾음!"; index1 = i; index2 = i + r; break; }
+		}
+		else { cout << "범위 초과!\n"; r = 1;  continue; }//i에 1을 더하고 r을 초기화시키고 처음부터 다시 돌림 
+	}
+}
