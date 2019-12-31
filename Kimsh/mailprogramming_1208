@@ -1,0 +1,50 @@
+// mailprogramming_1208.cpp : 콘솔 응용 프로그램에 대한 진입점을 정의합니다.
+//
+
+#include "stdafx.h"
+#include<iostream>
+#include<stdio.h>
+using namespace std;
+#pragma warning (disable : 4996)
+//정수 배열(int array)가 주어지면 가장 큰 이어지는 원소들의 합을 구하시오. 단, 시간복잡도는 O(n).
+int n = 0;
+int arr[] = { 0, };
+int result = 0;
+void max_sum();
+int main()
+{
+	cout << "배열의 원소 수를 입력해 주세요.";
+	cin >> n;
+	cout << "Input: ";
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
+		cin.ignore(2, ',');
+	}
+	max_sum();
+	
+	cout << "Output : " << result << "\n";
+
+    return 0;
+}
+
+void max_sum() {
+	int r = 1;
+	int max = -999999;
+	int sum = 0;
+
+	for (int i = 0; i < n; i++) {
+		if ((i + r) == n) { sum = 0;  r = 1; continue;}//i+r이 맨 끝 인덱스보다 크면 sum과 r 초기화하고 다음 i로 감. 여기서 유일하게 i를 보내줌.
+		
+		if (sum == 0) {//시작할 때 일단 맨처음 놈으로 시작
+			sum = arr[i] ;
+		}
+		
+		sum += arr[i + r]; //sum에 다음 놈을 더함.
+		r += 1; //r 하나 더함
+		i -= 1; //i 묶어둠
+		if (max < sum) max = sum;  // max가 sum 값보다 작을 경우 max를 바꿈.
+	}
+
+	if (arr[n - 1] > max) max = arr[n - 1]; //이거 다 했는데도 맨 끝놈이 더 크면 맨 끝놈이 max.
+	result = max;
+}
