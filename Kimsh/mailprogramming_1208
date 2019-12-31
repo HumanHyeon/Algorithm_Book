@@ -38,14 +38,15 @@ void max_sum() {
 		if ((i + r) == n) { sum = 0;  r = 1; continue;}//i+r이 맨 끝 인덱스보다 크면 sum과 r 초기화하고 다음 i로 감. 여기서 유일하게 i를 보내줌.
 		
 		if (sum == 0) sum = arr[i] ; //시작할 때 일단 맨처음 놈으로 시작
-		
+
+		if (max < sum) max = sum;  // max가 sum 값보다 작을 경우 max를 바꿈.
+
 		sum += arr[i + r]; //sum에 다음 놈을 더함.
 		r += 1; //r 하나 더함
 		i -= 1; //i 묶어둠
 		
 		if (max < sum) max = sum;  // max가 sum 값보다 작을 경우 max를 바꿈.
+		
 	}
-
-	if (arr[n - 1] > max) max = arr[n - 1]; //이거 다 했는데도 맨 끝놈이 더 크면 맨 끝놈이 max.
 	result = max;
 }
