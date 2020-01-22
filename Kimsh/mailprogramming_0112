@@ -29,7 +29,7 @@ int main()
 			i++;
 		}
 		else {
-			begin = end + 1;
+			if(i!=0) begin = end + 1;
 			end = input.length();
 			arr[i] = input.substr(begin, end - begin);
 			for (int j = 0; j < i+1; j++) {
