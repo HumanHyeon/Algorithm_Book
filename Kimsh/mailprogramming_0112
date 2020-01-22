@@ -1,0 +1,45 @@
+// mailprogramming_0119.cpp : 콘솔 응용 프로그램에 대한 진입점을 정의합니다.
+//
+
+#include "stdafx.h"
+#include<stdio.h>
+#include<string>
+#include<algorithm>
+#include<iostream>
+#pragma warning(disable:4996)
+using namespace std;
+
+//문제 : 주어진 string 에 모든 단어를 거꾸로 하시오.
+
+string input;
+string arr[10];
+
+int main()
+{
+	cout << "문자열을 입력해 주세요\n";
+	getline(cin, input);
+	int begin = 0;
+	int end = 0;
+	int i = 0;
+	while (1) {
+		if (input.find(" ", begin) != -1) {
+			end = input.find(" ", begin);
+			arr[i] = input.substr(begin, end - begin);
+			begin = end + 1;
+			i++;
+		}
+		else {
+			begin = end + 1;
+			end = input.length();
+			arr[i] = input.substr(begin, end - begin);
+			for (int j = 0; j < i+1; j++) {
+				reverse(arr[j].begin(),arr[j].end());
+				if (j == i) { cout << arr[j] << "\n"; continue; }
+				cout << arr[j] + " ";
+			}
+			break;
+		}
+	}
+    return 0;
+}
+
