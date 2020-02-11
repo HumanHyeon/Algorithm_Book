@@ -51,20 +51,24 @@ int main() {
     string findingword;    cin >> findingword;
     
     //판별하기
-    for(y = 0; y < Board; y++)
+    bool discriminator;
+
+    for(int i = 0; i < boardsize; i++)
     {
-        for(x = 0; x < Board; x++)
+        for(int j = 0; j < boardsize; j++)
         {
-            if (hasWord(y, x, findingword) == true)
+            if (hasWord(i, j, findingword) == true)
             {
                 cout << "단어가 있습니다.";
             }
             else
             {
                 cout << "단어가 없습니다.";
+                cout << endl;
             }
             
         }
     }
+    
     return 0;
 }
