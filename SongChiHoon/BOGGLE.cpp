@@ -49,13 +49,22 @@ int main() {
     //입력받기
     cout << endl, cout << "찾고 싶은 단어를 입력하세요 : ";
     string findingword;    cin >> findingword;
-    int x = 0, y = 0;
-    bool discriminator = hasWord(y, x, findingword);
-    if (discriminator == true)
-        cout << "단어가 있습니다.";
-    else
-        cout << "단어가 없습니다.";
     
-
+    //판별하기
+    for(y = 0; y < Board; y++)
+    {
+        for(x = 0; x < Board; x++)
+        {
+            if (hasWord(y, x, findingword) == true)
+            {
+                cout << "단어가 있습니다.";
+            }
+            else
+            {
+                cout << "단어가 없습니다.";
+            }
+            
+        }
+    }
     return 0;
 }
