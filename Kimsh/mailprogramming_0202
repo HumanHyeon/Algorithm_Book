@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<iostream>
+#include<functional> //greater(정렬 기준을 내림차순으로 바꿔 주는) 함수 객체를 사용하기 위한 헤더
+#include<set>
+#pragma warning (disable : 4996)
+using namespace std;
+// 정수 배열(int array)이 주어지면 두번째로 큰 값을 프린트하시오. 
+//Input: [3, 3, 3]  Input: [10, 5, 4, 3, -1]
+
+set <int,greater<int>> Input = { 10, 5, 4, 3, -1 }; //들어간 값을 내림차순으로 정렬
+
+ int main() {
+	 set <int> ::iterator itor; //이렇게 해서 itorator을 가져올 수 있음!
+	 itor = Input.begin();
+	 if (Input.size() >= 2) {
+		 cout << *(++itor)<< endl;
+	 }
+	 else { cout << "두번째로 큰 값이 없습니다.\n"; }
+	 getchar();
+	return 0;
+}
+
+
+
+ /*
+ functional STL의 함수 객체들
+ 
+ less : 첫번째 인자가 두번째 인자보다 작으면 true 반환 (bool)
+ greater : 첫번째 인자가 두번째 인자보다 크면 true 반환 (bool)
+ 
+ plus : 두개의 인자를 더한 값 반환
+ minus : 첫번째 인자에서 두번째 인자를 뺀 값 반환
+
+*/
