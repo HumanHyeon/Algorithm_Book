@@ -3,6 +3,7 @@
 using namespace std;
 
 bool friendship[10][10] = {};
+int friendzone[55][2] = {};
 int countingarray;
 
 int main()
