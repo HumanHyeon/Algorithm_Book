@@ -23,11 +23,11 @@
 #include <iostream>
 using namespace std;
 
-bool matching(char A[], char B[])
+bool matching(string A, string B)
 {
     int temp1, temp2, ret[26], count[26];
 
-    for(int i = 0; i < strlen(A); i++)
+    for(int i = 0; i < A.length(); i++)
     {
         temp1 = A[i] - 65;      // ret 배열에서 알파뱃의 위치 정보
         temp2 = A[i] - B[i];    // 위치적 의미 함유
@@ -52,9 +52,9 @@ int main()
     cout << "Input : ";
     cin >> Original >> Comparison;
 
-    int Length = strlen(Original);
+    int Length = Original.length();
 
-    if(Length == strlen(Comparison))
+    if(Length == Comparison.length())
     {
         if(matching(Original, Comparison) == true)
         {
