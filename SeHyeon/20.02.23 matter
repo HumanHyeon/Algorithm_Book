@@ -11,13 +11,9 @@ int main() {
 	for (int i = 0; i < input.length(); i++) {
 		if (matching[input[i] - 65]) {
 			if (matching[input[i] - 65] == compare[i])	continue;
-			else {
-				answer = false;
-			}
+			else	answer = false;
 		}
-		else {
-			matching[input[i] - 65] = compare[i];
-		}
+		else	matching[input[i] - 65] = compare[i];
 	}
 
 	if(answer)	cout << "True" << endl;
