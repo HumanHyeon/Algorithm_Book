@@ -47,12 +47,10 @@ bool matching(char A[], char B[])
 
 int main()
 {
-    char * Original;    char * Comparison;
+    string Original;    string Comparison;
 
     cout << "Input : ";
-    cin >> Original;    cin >> Comparison;
-
-    matching(Original, Comparison);
+    cin >> Original >> Comparison;
 
     int Length = strlen(Original);
 
