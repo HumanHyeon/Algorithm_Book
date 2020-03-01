@@ -1,0 +1,37 @@
+시퀸스 컨테이너
+	vector, list, deque
+연관 컨테이너(키 o)
+	map(hash_map), set(hash_set)
+
+hash는 정렬 하지 않는 이라 생각
+
+정렬된 상태로 자료 저장 : map, set
+정렬 하지 않는 상태로 빠른 검색 희망 : hash_map, hash_set
+
+hash_map은 해시 테이블을 자료구조로 사용 -> 많은 자료를 저장하고 있어도 검색이 빠름
+				     저장한 자료가 적으면 메모리 낭비와 검색 시 오버헤드 발생
+
+컨테이너에 추가나 삭제를 하는 것은 시퀸스 컨테이너가 hash_map보다 빠름
+적은 요소를 저장하고 검색할 때는 vector, list가 훨씬 빠를 수 있음(수천의 자료이상이면 hash_map 사용)
+
+hash_map을 사용하는 경우는
+많은 자료를 저장하고, 검색 속도가 빨라야 할때
+너무 빈번하게 자료를 삽입, 삭제 하지 않을 때
+
+
+
+hash_map 사용법
+#include <stdext>
+using namespace stdext;
+
+hash_map<Key 자료type, Value 자료type> 변수 이름
+-> ex) Key는 int, Value는 float
+	hash_map<int, float>hash1;
+
+동적 할당
+hash_map<key 자료type, Value 자료type>* 변수 이름 = new hash_map<key 자료type, Value 자료type>;
+-> ex) hash_map<int, float>*hash1 = new hash_map<int, float>;
+
+
+
+
