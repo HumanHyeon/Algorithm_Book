@@ -15,9 +15,8 @@ string prefix(int standardstr) {
 	bool identify = true;
 	for (int i = 0; i <= LIMIT; i++) 
 		for (int j = 0; j <= LIMIT; j++) {
-			for (int k = i; k < LIMIT - j; k++) {
+			for (int k = i; k < LIMIT - j; k++) 
 				comparestr += input[standardstr][k];
-			}
 			FOR(0) {
 				if (z == standardstr)	continue;
 				if ((signed)input[z].find(comparestr) == -1)	identify = false;
