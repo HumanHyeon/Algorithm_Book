@@ -9,10 +9,10 @@ Input: [¡°apple¡±, ¡°apps¡±, ¡°ape¡±]
 Input: [¡°hawaii¡±, ¡°happy¡±]
 Input: [¡°dog¡±, ¡°dogs¡±, ¡°doge¡±]
 */ 
-#define SIZE 2
-#define Max_Cases SIZE==2? 2:SIZE*(SIZE-1)/2
+#define SIZE 3
+#define Max_Cases SIZE<=2? 2:SIZE*(SIZE-1)/2
 
-array <string, SIZE> arr = {"hawaii","happy"};
+array <string, SIZE> arr = {"apple","apps","ape"};
 array <int, Max_Cases> compare_result = {};
 
 int Compare(int a , int b);
