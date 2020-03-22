@@ -9,13 +9,14 @@ Input: [“apple”, “apps”, “ape”]
 Input: [“hawaii”, “happy”]
 Input: [“dog”, “dogs”, “doge”]
 */ 
-#define SIZE 3
-#define Max_Cases SIZE<=2? 2:SIZE*(SIZE-1)/2
+#define SIZE 4
+#define Max_Cases (SIZE<=2) ? 2:SIZE*(SIZE-1)/2
+
+int Compare(int a , int b);
 
 array <string, SIZE> arr = {"apple","apps","ape"};
 array <int, Max_Cases> compare_result = {};
 
-int Compare(int a , int b);
 
 int main(void) {
 	fill(compare_result.begin(), compare_result.end(), -1); //c++배열의 초기화 방법
@@ -23,13 +24,13 @@ int main(void) {
 
 	for (int index1 = 0, index2 = 1,i = 0; index2 < SIZE; index2++) { //모든 경우의 수 비교
 		compare_result[i] = Compare(index1, index2); i++;
-		if (index2 == SIZE - 1 && index1 < SIZE - 2) {index1++; index2 = index1+1;}
+		if (index2 == SIZE - 1 && index1 < SIZE - 2) {index2 = index1+1; index1++; }
 	}
 
-	for (int i = 0, j = 1; j < SIZE; j++) { //결과끼리 또 모든 경우의 수 비교
+	for (int i = 0, j = 1; j < compare_result.size() ; j++) { //결과끼리 또 모든 경우의 수 비교
 		if (compare_result[j] == -1) {	final_result = compare_result[j-1]; break;	}
-		else { final_result = compare_result[i] < compare_result[j] ? compare_result[i] : compare_result[j];}
-		if (j == SIZE - 1 && i < SIZE - 2) { i++; j = i+1; }
+		else { final_result = compare_result[i] < compare_result[j] ? compare_result[i] : compare_result[j];}	
+		if (j == compare_result.size() - 1 && i < compare_result.size() - 2) { i++;  j = i + 1;}
 	}
 
 	cout <<"결과 : "<< arr[0].substr(0, final_result)<<"\n";
@@ -44,5 +45,6 @@ int Compare(int a, int b) { //index a와 b의 문자열을 비교함
 		if (arr[a].substr(0, i) != arr[b].substr(0, i)) { return result; }
 		else { result +=1; }
 	}
+
 	return result;
  }
