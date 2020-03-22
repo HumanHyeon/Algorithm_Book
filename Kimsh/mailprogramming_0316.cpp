@@ -9,10 +9,10 @@ Input: [“apple”, “apps”, “ape”]
 Input: [“hawaii”, “happy”]
 Input: [“dog”, “dogs”, “doge”]
 */ 
-#define SIZE 5
-#define Max_Cases SIZE*(SIZE-1)/2
+#define SIZE 2
+#define Max_Cases SIZE==2? 2:SIZE*(SIZE-1)/2
 
-array <string, SIZE> arr = {"apple","apps","ape"};
+array <string, SIZE> arr = {"hawaii","happy"};
 array <int, Max_Cases> compare_result = {};
 
 int Compare(int a , int b);
@@ -27,7 +27,7 @@ int main(void) {
 	}
 
 	for (int i = 0, j = 1; j < SIZE; j++) { //결과끼리 또 모든 경우의 수 비교
-		if (compare_result[j] == -1) {	final_result = compare_result[i]; break;	}
+		if (compare_result[j] == -1) {	final_result = compare_result[j-1]; break;	}
 		else { final_result = compare_result[i] < compare_result[j] ? compare_result[i] : compare_result[j];}
 		if (j == SIZE - 1 && i < SIZE - 2) { i++; j = i+1; }
 	}
