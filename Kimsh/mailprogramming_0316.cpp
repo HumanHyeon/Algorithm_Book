@@ -9,11 +9,11 @@ Input: [“apple”, “apps”, “ape”]
 Input: [“hawaii”, “happy”]
 Input: [“dog”, “dogs”, “doge”]
 */ 
-#define SIZE 3
-
+#define SIZE 5
+#define Max_Cases SIZE*(SIZE-1)/2
 
 array <string, SIZE> arr = {"apple","apps","ape"};
-array <int, SIZE> compare_result = {};
+array <int, Max_Cases> compare_result = {};
 
 int Compare(int a , int b);
 
@@ -22,16 +22,14 @@ int main(void) {
 	int final_result = 0 ;//최최최최종결과;;;
 
 	for (int index1 = 0, index2 = 1,i = 0; index2 < SIZE; index2++) { //모든 경우의 수 비교
-		if (index2 == index1) continue;
 		compare_result[i] = Compare(index1, index2); i++;
-		if (index2 == SIZE - 1 && index1 < SIZE - 2) {index1++; index2 = 0;}
+		if (index2 == SIZE - 1 && index1 < SIZE - 2) {index1++; index2 = index1+1;}
 	}
 
 	for (int i = 0, j = 1; j < SIZE; j++) { //결과끼리 또 모든 경우의 수 비교
-		if (i == j) continue;
 		if (compare_result[j] == -1) {	final_result = compare_result[i]; break;	}
 		else { final_result = compare_result[i] < compare_result[j] ? compare_result[i] : compare_result[j];}
-		if (j == SIZE - 1 && i < SIZE - 2) { i++; j = 0; }
+		if (j == SIZE - 1 && i < SIZE - 2) { i++; j = i+1; }
 	}
 
 	cout <<"결과 : "<< arr[0].substr(0, final_result)<<"\n";
