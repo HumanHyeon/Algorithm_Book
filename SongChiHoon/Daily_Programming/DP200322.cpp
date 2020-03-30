@@ -30,9 +30,8 @@ using namespace std;
 typedef struct NODE
 {
     int data;
-    int order;
     struct NODE *link;
-} NODE;
+} node;
 
 int main()
 {
@@ -41,22 +40,19 @@ int main()
     cout << "Input: ";
     do
     {
-        series += 1;
         cin >> input;
         if (input == NULL)
         {
             break;
         }
-        NODE *new_node = new NODE;
-        new_node -> data = input;
-        new_node -> order = series;
-
+        node *n1 = new node;
+        n1 -> data = input;
     } while (true);
 
     cout << "N=";
     cin >> N;
     target = series - N + 1;
-    delete new_node[target];
+    delete n1[target];
     
     
 
