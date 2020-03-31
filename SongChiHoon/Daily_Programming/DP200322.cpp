@@ -27,27 +27,26 @@
 #include <iostream>
 using namespace std;
 
-typedef struct NODE
+typedef struct linked_list
 {
     int data;
-    struct NODE *link;
-} node;
+    struct linked_list* link;
+} linked_list;
 
 int main()
 {
-    int input, target, N;  int series = 0;
+    int *linkedlist[5];
+    int input, target;
 
     cout << "Input: ";
-    do
+    for (int count = 0; count < 5; count++)
     {
         cin >> input;
-        if (input == NULL)
-        {
-            break;
-        }
-        node *n1 = new node;
-        n1 -> data = input;
-    } while (true);
+        linked_list *linkedlist[count] = new linked_list;
+        linkedlist[count]
+    }
+    linked_list* head = new linked_list;
+
 
     cout << "N=";
     cin >> N;
