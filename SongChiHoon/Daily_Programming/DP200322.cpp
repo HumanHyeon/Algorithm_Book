@@ -26,33 +26,65 @@
 
 #include <iostream>
 using namespace std;
+#define maxnodenum 5;
 
 typedef struct linked_list
 {
     int data;
     struct linked_list* link;
-} linked_list;
+} node;
+
+void reconnect(node *linkedlist, int target)
+{
+    linkedlist[target-1].link = &linkedlist[target+1];
+
+    cout << "Output : ";
+    for (int i = 0; i < maxnodenum; i++)
+    {
+        cout << linkedlist[i].data;
+
+        for (int j = 0; j < maxnodenum-1; j++)
+        {
+            cout << "->";
+        }
+    }
+    return;
+}
 
 int main()
 {
-    int *linkedlist[5];
     int input, target;
 
     cout << "Input: ";
-    for (int count = 0; count < 5; count++)
+    node *linkedlist = new node[maxnodenum];    //연결리스트 동적 배열 생성
+
+    // 리스트 배열들에 값 부여. :: 수정 필요. cin으로 받을 때 무조건 5개 다받야됨.
+    for (int count = 0; count < maxnodenum; count++)
     {
         cin >> input;
-        linked_list *linkedlist[count] = new linked_list;
-        linkedlist[count]
-    }
-    linked_list* head = new linked_list;
 
+        if (input == NULL)
+        {
+            break;
+        }
+
+        linkedlist[count].data = input;
+    }
+
+    // 리스트들 연결
+    for (int count = 0; count < maxnodenum; count++)
+    {
+        linkedlist[count].link = &linkedlist[count+1];
+    }
 
     cout << "N=";
-    cin >> N;
-    target = series - N + 1;
-    delete n1[target];
-    
-    
+    cin >> target;
 
+    target = maxnodenum - target;   //목표값을 앞에서 오는 값으로 수정
+
+    reconnect(linkedlist, target);
+
+    delete[] linkedlist;
+
+    return 0;
 }
