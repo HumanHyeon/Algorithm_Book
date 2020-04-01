@@ -26,65 +26,57 @@
 
 #include <iostream>
 using namespace std;
-#define maxnodenum 5;
+
+typedef int datatype;
 
 typedef struct linked_list
 {
-    int data;
+    datatype data;
     struct linked_list* link;
 } node;
 
-void reconnect(node *linkedlist, int target)
-{
-    linkedlist[target-1].link = &linkedlist[target+1];
+int main(){
+    // head는 시작 노드, tail은 끝 노드, cur은 출력 지정 노드
+    node *head = NULL;  node *tail = NULL;  node *cur = NULL;
 
-    cout << "Output : ";
-    for (int i = 0; i < maxnodenum; i++)
+    node *newNode = NULL;
+
+    int readData, count;
+    //입력 받는 부분
+    do
     {
-        cout << linkedlist[i].data;
-
-        for (int j = 0; j < maxnodenum-1; j++)
+        cout << "Input : ";
+        cin >> readData >> "->";
+        if (readData > 0)
         {
-            cout << "->";
+            count++;
         }
-    }
-    return;
-}
-
-int main()
-{
-    int input, target;
-
-    cout << "Input: ";
-    node *linkedlist = new node[maxnodenum];    //연결리스트 동적 배열 생성
-
-    // 리스트 배열들에 값 부여. :: 수정 필요. cin으로 받을 때 무조건 5개 다받야됨.
-    for (int count = 0; count < maxnodenum; count++)
-    {
-        cin >> input;
-
-        if (input == NULL)
+        else
         {
             break;
         }
+        newNode = new node;
+        newNode->data = readData;
+        newNode->link = NULL;
 
-        linkedlist[count].data = input;
-    }
+        if (head == NULL)   head = newNode;
+        else    tail->link = newNode;
+        
+        tail = newNode;
+    } while (readData == NULL);
 
-    // 리스트들 연결
-    for (int count = 0; count < maxnodenum; count++)
+    if (head == NULL)
     {
-        linkedlist[count].link = &linkedlist[count+1];
+        cout << "저장된 값 없음" << endl;
     }
-
-    cout << "N=";
-    cin >> target;
-
-    target = maxnodenum - target;   //목표값을 앞에서 오는 값으로 수정
-
-    reconnect(linkedlist, target);
-
-    delete[] linkedlist;
-
-    return 0;
+    else
+    {
+        cur = head;
+        cout << cur->data << "->";
+        while (cur->link != NULL)
+        {
+            cur = cur->link;
+            cout << cur->data << " ";
+        }               
+    }
 }
