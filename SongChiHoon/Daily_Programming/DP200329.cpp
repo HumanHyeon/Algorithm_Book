@@ -19,20 +19,24 @@
 #include <iostream>
 using namespace std;
 
-typedef int datatype;
+typedef int datatype;   //set linked list data-type
 
+//set node, linked_list
 typedef struct linked_list
 {
     datatype data;
     struct linked_list* link;
 } node;
 
+//linked_list merging data_structure
 typedef struct
 {
     node *newnode1;
     node *newnode2;
 } tmp;
 
+//only merging function.
+//make two different list into one sorted list.
 node* merge(node *newnode1, node *newnode2){
     node *endvalue = NULL;
 
@@ -53,6 +57,8 @@ node* merge(node *newnode1, node *newnode2){
     return endvalue;
 }
 
+//dividing function.
+//one list divided into two semi list and return it.
 tmp partition(node *list, int k){
     node *point;
     tmp result;
@@ -89,7 +95,8 @@ node* addNode(int n){
 
     return newnode;
 }
-//merging two other linked list
+//merging two other linked list. recursive.
+//L is list starting address, k is list size.
 void mergeSort(node **L, int k){
     node *newnode1 = NULL;  node *newnode2 = NULL;
     tmp tmp;
@@ -139,34 +146,5 @@ int main(){
     
     cout << endl;
 
+    return 0;
 }
-
-
-
-// node *head = NULL;  node *tail = NULL;  node *cur = NULL;
-// // head는 시작 노드, tail은 끝 노드, cur은 출력 지정 노드
-// node getInput(node *NODE, int num){
-
-//     int readData, count;
-//     do
-//     {
-//         cout << "Input : ";
-//         cin >> readData;
-//         if (readData > 0)
-//         {
-//             count++;
-//         }
-//         else
-//         {
-//             break;
-//         }
-//         NODE = new node;
-//         NODE->data = readData;
-//         NODE->link = NULL;
-
-//         if (head == NULL)   head = NODE;
-//         else    tail->link = NODE;
-        
-//         tail = NODE;
-//     } while (readData == NULL);
-// }
