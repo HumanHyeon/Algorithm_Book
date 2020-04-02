@@ -36,9 +36,7 @@ typedef struct linked_list
 } node;
 
 node* addNode(int n){
-    node *addingnode;
-
-    addingnode = new node;
+    node *addingnode = new node;
 
     addingnode->data = n;
     addingnode->link = NULL;
@@ -60,9 +58,9 @@ node* delNode(node* targetnode, int target, int casenum){
 
 int main(){
     int casenum, input, target;
-    node* tmp = NULL;   node* result = NULL;    node* head = NULL;
+    node* tmp = NULL;   node* result = NULL;    node* head = NULL;  node* mainnode = NULL;
     
-    head -> link = tmp;
+    head -> link = mainnode;
 
     cout << "입력 갯수를 입력하시오 : ";
     cin >> casenum;
@@ -72,17 +70,21 @@ int main(){
     for (int i = 0; i < casenum; i++)
     {
         cin >> input;
-        tmp->link = addNode(input);
-        tmp = tmp -> link;
+        mainnode = addNode(input);
+        mainnode = mainnode -> link;
     }
 
     cout << "N = ";    cin >> target;
 
-    delNode(tmp, target, casenum);
+    delNode(head, target, casenum);
 
-    for (node* i = head; i != NULL; i = i -> link)
+    for (node* i = head -> link; i != NULL; i = i -> link)
     {
-        cout << i -> data << "->";
+        cout << i -> data;
+        if (i -> link != NULL)
+        {
+            cout << "->";
+        }
     }
     
     return 0;
