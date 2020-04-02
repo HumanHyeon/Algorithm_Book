@@ -35,48 +35,55 @@ typedef struct linked_list
     struct linked_list* link;
 } node;
 
+node* addNode(int n){
+    node *addingnode;
+
+    addingnode = new node;
+
+    addingnode->data = n;
+    addingnode->link = NULL;
+
+    return addingnode;
+}
+
+node* delNode(node* targetnode, int target, int casenum){
+    node* delNode = targetnode -> link;  node* predelnode = targetnode;
+
+    for (int i = 0; i < casenum - target; i++)
+    {
+        delNode = delNode -> link;
+        predelnode = predelnode -> link;
+    }
+
+    predelnode -> link = delNode -> link;    
+}
+
 int main(){
-    // head는 시작 노드, tail은 끝 노드, cur은 출력 지정 노드
-    node *head = NULL;  node *tail = NULL;  node *cur = NULL;
+    int casenum, input, target;
+    node* tmp = NULL;   node* result = NULL;    node* head = NULL;
+    
+    head -> link = tmp;
 
-    node *newNode = NULL;
+    cout << "입력 갯수를 입력하시오 : ";
+    cin >> casenum;
 
-    int readData, count;
-    //입력 받는 부분
-    do
+    cout << "Input : ";
+
+    for (int i = 0; i < casenum; i++)
     {
-        cout << "Input : ";
-        cin >> readData >> "->";
-        if (readData > 0)
-        {
-            count++;
-        }
-        else
-        {
-            break;
-        }
-        newNode = new node;
-        newNode->data = readData;
-        newNode->link = NULL;
-
-        if (head == NULL)   head = newNode;
-        else    tail->link = newNode;
-        
-        tail = newNode;
-    } while (readData == NULL);
-
-    if (head == NULL)
-    {
-        cout << "저장된 값 없음" << endl;
+        cin >> input;
+        tmp->link = addNode(input);
+        tmp = tmp -> link;
     }
-    else
+
+    cout << "N = ";    cin >> target;
+
+    delNode(tmp, target, casenum);
+
+    for (node* i = head; i != NULL; i = i -> link)
     {
-        cur = head;
-        cout << cur->data << "->";
-        while (cur->link != NULL)
-        {
-            cur = cur->link;
-            cout << cur->data << " ";
-        }               
+        cout << i -> data << "->";
     }
+    
+    return 0;
 }

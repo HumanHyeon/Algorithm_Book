@@ -119,7 +119,7 @@ void mergeSort(node **L, int k){
 
 int main(){
     node *head; node *tmp;  node *output;
-    int casenum, t;
+    int casenum, input;
 
     head = new node;
     head->link = NULL;
@@ -129,8 +129,8 @@ int main(){
 
     for (int i = 0; i < casenum; i++)
     {
-        cin >> t;
-        tmp->link = addNode(t);
+        cin >> input;
+        tmp->link = addNode(input);
         tmp = tmp -> link;
     }
     
