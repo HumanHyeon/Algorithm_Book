@@ -28,6 +28,7 @@ int main() {
 	cout << "도착지점 좌표 입력 : ";
 	cin >> arrive_a >> arrive_b;
 	res(0,start_a, start_b);
+	if (min_distance == INT32_MAX) min_distance = -1;
 	cout << "최소 거리 = " << min_distance<<"\n";
 	getchar();
 	getchar();
@@ -36,7 +37,8 @@ int main() {
 int res(int distance, int a, int b) //여지껏의 거리, 현재 좌표
 {
 	int tmp = distance;
-	if ((a == arrive_a && b == arrive_b)) { min_distance = min_distance < tmp ? min_distance : tmp; return tmp; } //도착지점 도달 시
+	if (arr[a][b] == 0 || arr[arrive_a][arrive_b] == 0) return tmp;
+	if ((a == arrive_a && b == arrive_b)&&arr[arrive_a][arrive_b]!=0) { min_distance = min_distance < tmp ? min_distance : tmp; return tmp; } //도착지점 도달 시
 	arr[a][b] = 0; // 왔던 길을 다시 지나지 않기 위한 안전장치
 	if (b + 1 != 6 && arr[a][b + 1] != 0) res(tmp + 1, a, b + 1); //내 오른쪽이 범위를 벗어나지 않고, 1일 때
 	if (a + 1 != 5 && arr[a + 1][b] != 0) res(tmp + 1, a + 1, b); //내 아래쪽이 범위를 벗어나지 않고, 1일 때
