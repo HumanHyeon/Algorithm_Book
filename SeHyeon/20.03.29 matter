@@ -1,4 +1,4 @@
-  #include <cstdio>
+#include <cstdio>
 #include <cstdlib>
 #pragma warning(disable : 6011)
 #pragma warning(disable : 28182)
