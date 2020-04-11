@@ -14,10 +14,10 @@ void Sorting(ListNode* h1, ListNode* h2)
 {
     int tmp[10];
 
-    ListNode* p1 = h1; //¿¬°á ¸®½ºÆ® ¿¬°á
-    p1->link = h2;     
+    ListNode* p1 = h1; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+    p1->link = h2;
 
-    ListNode* p2 = h1; //¿¬°á ¸®½ºÆ® µ¥ÀÌÅÍ¸¦ ¹è¿­¿¡ Ãß°¡
+    ListNode* p2 = h1; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ß°ï¿½
     while (p2 != NULL)
     {
         int i = 0;
@@ -26,9 +26,9 @@ void Sorting(ListNode* h1, ListNode* h2)
         i++;
     }
 
-    sort(tmp, tmp + sizeof(tmp) / sizeof(*tmp)); //¹è¿­ Á¤·Ä
+    sort(tmp, tmp + sizeof(tmp) / sizeof(*tmp)); //ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½
 
-    ListNode* p3 = h1; //Á¤·ÄµÈ µ¥ÀÌÅÍ¸¦ ¿¬°á ¸®½ºÆ® µ¥ÀÌÅÍ¿Í ±³È¯
+    ListNode* p3 = h1; //ï¿½ï¿½ï¿½Äµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½È¯
     while (p3 != NULL)
     {
         int i = 0;
