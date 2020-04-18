@@ -17,7 +17,7 @@ int main() {
 	int item = 0;
 	Node *startPnt = NULL;
 	cout << "랜덤으로 10 개의 이진트리 원소 생성\n";
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 	for (int i = 0; i < 10; i++) {
 		item = rand()%100;
 		insertnode(&startPnt,item);
@@ -26,7 +26,6 @@ int main() {
 	cout << "------전위순환 출력-------\n";
 		preOrder(startPnt);
 	
-	getchar();
 	getchar();
 	return 0;
 }
