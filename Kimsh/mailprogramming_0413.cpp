@@ -1,5 +1,4 @@
 #include<iostream>
-#include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
 using namespace std;
@@ -12,26 +11,26 @@ public:
 };
 
 void insertnode(Node **node, int value);
-void preOrder(Node *node); //³»¿ë¹°ÀÇ È®ÀÎÀ» À§ÇÑ ÀüÀ§¼øÈ¸
+void preOrder(Node *node); //ë‚´ìš©ë¬¼ì˜ í™•ì¸ì„ ìœ„í•œ ì „ìœ„ìˆœíšŒ
 
 int main() {
 	int item = 0;
 	Node *startPnt = NULL;
-	cout << "·£´ıÀ¸·Î 10 °³ÀÇ ÀÌÁøÆ®¸® ¿ø¼Ò »ı¼º\n";
+	cout << "ëœë¤ìœ¼ë¡œ 10 ê°œì˜ ì´ì§„íŠ¸ë¦¬ ì›ì†Œ ìƒì„±\n";
 	srand(time(NULL));
 	for (int i = 0; i < 10; i++) {
 		item = rand()%100;
 		insertnode(&startPnt,item);
-		cout << "ÀÔ·Â : " << item << "\n";
+		cout << "ì…ë ¥ : " << item << "\n";
 	}
-	cout << "------ÀüÀ§¼øÈ¯ Ãâ·Â-------\n";
+	cout << "------ì „ìœ„ìˆœí™˜ ì¶œë ¥-------\n";
 		preOrder(startPnt);
 	
 	getchar();
 	getchar();
 	return 0;
 }
-void insertnode(Node **node, int value) //**node : node Æ÷ÀÎÅÍÀÇ ¸Ş¸ğ¸® ÁÖ¼Ò.
+void insertnode(Node **node, int value) //**node : node í¬ì¸í„°ì˜ ë©”ëª¨ë¦¬ ì£¼ì†Œ.
 {
 	if (*node == NULL) {
 		*node = (Node*)malloc(sizeof(Node));
@@ -43,12 +42,12 @@ void insertnode(Node **node, int value) //**node : node Æ÷ÀÎÅÍÀÇ ¸Ş¸ğ¸® ÁÖ¼Ò.
 		else
 			cout << "\n" << value << "not inserted. No memory available.\n";
 	}
-	else if (value > (*node)->data)
+	else if (value > (*node)->data) //ìƒê°ë³´ë‹¤ ê°„ë‹¨í–ˆëŠ”ë° ì—¬ê¸° ë¶€ë“±í˜¸ ë°©í–¥ë§Œ ë°”ê¾¸ë‹ˆê¹Œ ëë‹¤,,
 		insertnode(&((*node)->leftnode), value);
 	else if (value <(*node)->data)
 		insertnode(&((*node)->rightnode), value);
 	else
-		cout << "Áßº¹\n";
+		cout << "ì¤‘ë³µ\n";
 };
 void preOrder(Node *node) {
 	if (node != NULL) {
