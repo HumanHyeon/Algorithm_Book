@@ -57,6 +57,7 @@ BinaryNode *getright()
 
 BinaryNode::~BinaryNode()
 {
+    
 }
 
 class BinaryTree
