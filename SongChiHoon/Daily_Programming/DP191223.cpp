@@ -8,34 +8,32 @@
 
 // Output: 10 // 0, 1, 2, 3, 5, 8 중 짝수인 2 + 8 = 10.
 #include <iostream>
-#define SIZE 10
+#include <vector>
+#include <algorithm>
 using namespace std;
-
-int x = 0;  int y = 1;  int i = 2;
-int Fibonacci_array[SIZE] = {0, 1};
-
-int making_Fibonacci(int x, int y, int i)
-{
-    x += y;     //x = x + y;
-    Fibonacci_array[i] = x;
-    i++;
-    return making_Fibonacci(x, y, i);
-}
-
-int search()
-{
-
-}
 
 int main()
 {
-    int input;
+    int N, count;
+    int foundationnum[2] = {0, 1};
+    vector<int> mainplace = {0, 1};
 
-    cout << "Input() : ";
-    cin >> input;
+    cout << "Input ";   cin >> N;
 
+    for (int i = 2; N > mainplace[i-2] + mainplace[i-1]; i++)
+    {
+        N = mainplace[i-2] + mainplace[i-1];
+        mainplace.push_back(mainplace[i-2] + mainplace[i-1]);
+        count = i;
+    }
 
-
+    while (mainplace.back() != 0)
+    {
+        mainplace.pop_back(mainplace.back() + 1)
+    }
     
+    
+    
+
     return 0;
 }

@@ -16,20 +16,36 @@
 // Output: [3, 3, 0]
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
-
-bool Discriminator ()
-{
-
-}
 
 int main()
 {
-    int input[] = {0, 5, 0, 3, 1};
-    for (int i =0; i < sizeof(input)/sizeof(int); i++)
-    {
+    vector<int> input, output;
+    int temp;
+    int i = 0;
+    
+    cout << "Input";
 
+    while (temp)
+    {
+        cin >> temp;
+        input.push_back(temp);
     }
+    
+    sort(input.begin(), input.end(), output);
+
+    reverse(output.begin(), output.end());
+
+    cout << "Output : ";
+
+    while (i == size(output))
+    {
+        cout << output[i];
+        i++;
+    }
+    
 
     return 0;
 }

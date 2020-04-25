@@ -17,9 +17,37 @@
 // Output: ["((()))", "(()())", "()(())", "(())()", "()()()"]
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
+
+class parentheses
+{
+private:
+    int amount;
+    string start = "(";
+    string end = ")";
+public:
+    parentheses(int number);
+    ~parentheses();
+};
+
+parentheses::parentheses(int number)
+{
+    amount = number;
+}
+
+parentheses::~parentheses()
+{
+}
+
+
 
 int main()
 {   
+    int input;
+    cout << "Input : ";
+    cin >> input;
+
     return 0;
 }

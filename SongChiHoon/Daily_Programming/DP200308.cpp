@@ -25,4 +25,35 @@
 // Output: -5
 
 #include <iostream>
+#include <algorithm>
+#include <vector>
 using namespace std;
+
+int main(){
+    int targetnum, temp, answer;
+    vector<int> input;
+
+    cout << "배열 입력";
+    
+    while (temp)
+    {
+        cin >> temp;
+        input.push_back(temp);
+    }
+
+    int *ret = new int[size(input)];
+
+    sort(input.begin(), input.end(), ret);    
+    
+    cout << "찾으려는 N번째 큰 수 입력";
+    cin >> targetnum;
+
+    for (int i = 0; i < targetnum; i++)
+    {
+        answer = input.pop_back;
+    }
+
+    cout << "Output : " << answer;
+
+    return 0;
+}
