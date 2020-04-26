@@ -13,7 +13,7 @@ Output:
 int arr[3][3] = {
 	{1,2,3},
 	{8,9,4},
-	{7,6,5}
+	{7,6,5},
 };
 void Snail(int a, int b);
 int main() {
@@ -27,13 +27,14 @@ void Snail(int a, int b) {
 	for (int i = a; i < b; i++)
 	{
 		if (i == a)
-			for (int j = a; j < b;j++) cout << arr[i][j]<<", ";
-		else if (i == b - 1) for (int j = b - 1; j > a; j--) cout << arr[i][j]<<", ";
-		else cout << arr[i][b - 1]<<", ";
+			for (int j = a; j < b; j++) cout << arr[i][j] << ", ";
+		else if (i == b - 1) for (int j = b - 1; j > a; j--) cout << arr[i][j] << ", ";
+		else cout << arr[i][b - 1] << ", ";
 	}
-	if ((b-a) != 1) {
-		for (int i = b - 1; i > a; i--) cout << arr[i][a]<<", ";
+	if (((b - 1) - a) != 1) {
+		for (int i = b - 1; i > a; i--) cout << arr[i][a] << ", ";
 	}
-	Snail(a+1,b-1);
+	else if ((b - 1) - a == 1) { cout << arr[a+1][a];  return; }
+	Snail(a+1, b-1);
 	return;
 }
