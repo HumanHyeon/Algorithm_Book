@@ -57,7 +57,6 @@ int main() {
     }
 
     sort(box.begin, box.end);
-    reverse(box.begin, box.end);
 
     cout << "Output : ";
 
