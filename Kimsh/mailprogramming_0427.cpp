@@ -5,14 +5,17 @@ using namespace std;
 array<int, 5>arr = { 1,2,4,0,3 };
 
 int main() {
-	for (int i = 0, j = 1; i < arr.size(); j++) {
+	int j = 1;
+	for (int i = 0; i < arr.size(); j++) {
 		i = arr[i];
-		if (i == 0 || i == arr[i]) {
-			if (j < arr.size()) cout << "False\n";
+		cout << i << " ";
+		if (i == 0 || j > arr.size()) {
+			if (j != arr.size()) cout << "False\n";
 			else cout << "True\n";
 			break;
 		}
 	}
+
 	getchar();
 	return 0;
 }
