@@ -5,8 +5,7 @@ using namespace std;
 array<int, 5>arr = { 1,2,4,0,3 };
 
 int main() {
-	int j = 1;
-	for (int i = 0; i < arr.size(); j++) {
+	for (int i = 0, j = 1; i < arr.size(); j++) {
 		i = arr[i];
 		cout << i << " ";
 		if (i == 0 || j > arr.size()) {
