@@ -48,9 +48,11 @@ int main(){
         node.push_back(input);
     }
 
+    cout << "]" << endl;
+
     if (input)
     {
-        /* code */
+        
     }
     
     
