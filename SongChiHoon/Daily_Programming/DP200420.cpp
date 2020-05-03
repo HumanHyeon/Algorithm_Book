@@ -25,45 +25,71 @@
 // 1, 2, 3, 4, 5, 6, 7, 8, 9
 
 #include <iostream>
-#include <vector>
-#include <algorithm>
 using namespace std;
 
-#define SIZE 3
+//horizontal_point 가로 값, vertical_point 세로 값
+int movingpart(int **input, int vertical_point = 0, int horizontal_point = 0, string direction = "right"){
 
-int input[SIZE][SIZE] = {{1, 2, 3}, {8, 9, 4}, {7, 6, 5}};
+    cout << input[vertical_point][horizontal_point] << " ";
+    input[vertical_point][horizontal_point] = NULL;
+
+    if (direction == "right" && input[vertical_point][horizontal_point + 1] == NULL)    direction = "down";
+    if (direction == "down" && input[vertical_point + 1][horizontal_point] == NULL)     direction = "left";
+    if (direction == "left" && input[vertical_point][horizontal_point - 1] == NULL)     direction = "up";
+    if (direction == "up" && input[vertical_point - 1][horizontal_point] == NULL)       direction = "right";    
+
+    if (input[vertical_point][horizontal_point + 1] != NULL && direction == "right")
+        movingpart(input, vertical_point, horizontal_point + 1);
+    if (input[vertical_point + 1][horizontal_point] != NULL && direction == "down")
+        movingpart(input, vertical_point + 1, horizontal_point);
+    if (input[vertical_point][horizontal_point - 1] != NULL && direction == "left")
+        movingpart(input, vertical_point, horizontal_point - 1);
+    if (input[vertical_point - 1][horizontal_point] != NULL && direction == "up")
+        movingpart(input, vertical_point - 1, horizontal_point);
+    
+    
+}
 
 int main() {
 
-    vector<int> box;
+    int horizontal, vertical;
+
+    cout << "Input horizontal length : ";   cin >> horizontal;
+    cout << endl << "Input vertical length : ";     cin >> vertical;
+
+    // 2D array dynamic allocation
+    int **input = new int*[vertical];
+    for (int i = 0; i < vertical; i++)
+    {
+        input[i] = new int[horizontal];
+    }
+    
+
+    for (int verticalx = 0; verticalx < vertical; verticalx++)
+    {
+        for (int horizontalx = 0; horizontalx < horizontal; horizontalx++)
+        {
+            cin >> input[verticalx][horizontalx];
+        }
+    }
 
     cout << "Input:" << endl << "[";
-    for (int i = 0; i < SIZE; i++)
+
+    for (int i = 0; i < vertical; i++)
     {
         cout << "[";
-        for (int j = 0; j < SIZE; j++)
+        for (int j = 0; j < horizontal; j++)
         {
             cout << input[i][j] << " ";
         }
         cout <<"]" << endl;
     }
-    
-    for (int i = 0; i < SIZE; i++)
-    {
-        for (int j = 0; j < SIZE; j++)
-        {
-            box.push_back(input[i][j]);
-        }        
-    }
 
-    sort(box.begin, box.end);
+    cout << "]";
 
     cout << "Output : ";
 
-    for (vector<int>::iterator it = box.begin; it != box.end; it++)
-    {
-        cout << *it << ", ";
-    }  
+    movingpart(input);
 
     return 0;
 }
