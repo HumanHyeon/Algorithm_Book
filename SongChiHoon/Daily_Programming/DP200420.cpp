@@ -46,8 +46,6 @@ int movingpart(int **input, int vertical_point = 0, int horizontal_point = 0, st
         movingpart(input, vertical_point, horizontal_point - 1);
     if (input[vertical_point - 1][horizontal_point] != NULL && direction == "up")
         movingpart(input, vertical_point - 1, horizontal_point);
-    
-    
 }
 
 int main() {
