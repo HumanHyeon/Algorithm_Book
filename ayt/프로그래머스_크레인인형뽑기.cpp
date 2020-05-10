@@ -26,10 +26,9 @@ int solution(vector<vector<int>> board, vector<int> moves) {
         if(basket[basket.size()-1] == basket[basket.size()-2]) {
             basket.pop_back();
             basket.pop_back();
-            answer += 2;  
+            answer += 2;
         }
     }
-        
     return answer;
 }
 
