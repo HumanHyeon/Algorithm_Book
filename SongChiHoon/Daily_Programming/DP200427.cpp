@@ -33,6 +33,7 @@
 // // arr[0]로 돌아오지 못합니다.
 
 #include <iostream>
+#include <vector>
 #include <list>
 using namespace std;
 
@@ -55,7 +56,5 @@ int main(){
         
     }
     
-    
-
     return 0;
 }
