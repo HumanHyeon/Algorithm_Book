@@ -12,17 +12,17 @@ int solution(vector<vector<int>> board, vector<int> moves) {
     {
         for(col = row->begin(); col != row->end(); col++)
         {
-            if(col == 0)
+            if(*col == 0)
             {
                 continue;
             }
             else
             {
-                collecting.push_back(col);
+                collecting.push_back(*col);
                 if(col == --col)
                 {
                     answer++;
-                    col = 0;
+                    *col = 0;
                 }
             }
         }
