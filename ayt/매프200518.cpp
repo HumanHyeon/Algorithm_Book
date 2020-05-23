@@ -5,7 +5,7 @@ using namespace std;
 void shift(int inp[], int k, int size) {
 	int tmp[100];
 
-	if (k > size) k -= size;
+	if (k > size) k %= size;
 
 	for (int i = 0; i < k; i++) {
 		tmp[i] = inp[i];
