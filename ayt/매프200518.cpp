@@ -20,9 +20,8 @@ void shift(int inp[], int k, int size) {
 		j--;
 	}
 
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++)
 		cout << inp[i] << " ";
-	}
 }
 
 int main() {
