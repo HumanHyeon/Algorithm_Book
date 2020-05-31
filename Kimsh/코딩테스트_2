@@ -1,0 +1,15 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(string s, int n) {
+    string answer = "";
+        for(int i=0;i<s.length();i++){
+            if(s.at(i)==' ')answer += s.at(i);
+            else if(s.at(i)=='z'||s.at(i)=='Z') answer += (s.at(i)+n-26);
+            else answer += (s.at(i)+n);
+        }
+    
+    return answer;
+}
