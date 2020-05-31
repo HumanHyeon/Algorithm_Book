@@ -9,10 +9,30 @@
 #include <ctime>
 using namespace std;
 
-vector<int> mergesort(vector<int>& vec, int size = 10){
-    for (int i = 0; i < size; i++)
+void merge(vector<int>& vec, int start, int end, int middle) {
+    vector<int> ret;
+    int i = start, j = middle + 1, copy = 0;
+
+    while (i <= middle && j <= end) {
+        if (vec[i] < v[j]) ret.push_back(vec[i++]);
+        else if (vec[i] > v[j]) ret.push_back(vec[j++]));
+    }
+
+    while (i <= middle) ret.push_back(vec[i++]);
+    while (j <= end) ret.push_back(vec[j++]);
+
+    for (int k = start; k < end; k++)
     {
-        size/2;
+        vec[k] = ret[copy++];
+    }    
+}
+
+vector<int> mergesort(vector<int>& vec, int start = 0, int end = 10){
+    if(start < end) {
+        int middle = (start + end) / 2;
+        mergesort(vec, start, middle);
+        mergesort(vec, middle+1, end);
+        return merge(vec, start, end, middle);
     }
     
 }
