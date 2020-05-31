@@ -14,8 +14,8 @@ void merge(vector<int>& vec, int start, int end, int middle) {
     int i = start, j = middle + 1, copy = 0;
 
     while (i <= middle && j <= end) {
-        if (vec[i] < v[j]) ret.push_back(vec[i++]);
-        else if (vec[i] > v[j]) ret.push_back(vec[j++]));
+        if (vec[i] < vec[j]) ret.push_back(vec[i++]);
+        else if (vec[i] > vec[j]) ret.push_back(vec[j++]);
     }
 
     while (i <= middle) ret.push_back(vec[i++]);
@@ -24,7 +24,7 @@ void merge(vector<int>& vec, int start, int end, int middle) {
     for (int k = start; k < end; k++)
     {
         vec[k] = ret[copy++];
-    }    
+    }
 }
 
 vector<int> mergesort(vector<int>& vec, int start = 0, int end = 10){
@@ -32,7 +32,12 @@ vector<int> mergesort(vector<int>& vec, int start = 0, int end = 10){
         int middle = (start + end) / 2;
         mergesort(vec, start, middle);
         mergesort(vec, middle+1, end);
-        return merge(vec, start, end, middle);
+        merge(vec, start, end, middle);
+    }
+    
+    for (int i = 0; i < 10; i++)
+    {
+        cout << vec[i];
     }
     
 }
