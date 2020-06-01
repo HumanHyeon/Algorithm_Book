@@ -22,7 +22,7 @@ int findKey(int* ip, int k, int size = sizeof(input)/sizeof(input[0])) {
 
 	if (result1 == -1 && result2 == -1)	return -1;
 	if (result1 > result2)	return result1;
-	else					return result2;
+	else			return result2;
 }
 
 void moveArray(int *ip, int k, int size = sizeof(input) / sizeof(input[0])) {
