@@ -46,6 +46,5 @@ int main() {
 
 	for (int i = 0; i < sizeof(input) / sizeof(input[0]); i++)
 		cout << input[i] << " ";
-
 	cout << "\n" << answer << endl;
 }
