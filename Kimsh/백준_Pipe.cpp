@@ -9,7 +9,7 @@ vector<vector<int>> house;
 int main() {
 	cout << "집의 크기 : ";
 	cin >> n;
-	int cache[n][n];
+	int cache[n][n]{0,1,0,};
 	for (int i = 0; i < n; i++) {
 		vector<int> element(n);
 		house.push_back(element);
