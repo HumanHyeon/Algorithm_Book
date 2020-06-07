@@ -27,7 +27,7 @@ int main() {
 }
 void carrying_pipe(int a, int b, int status) {
 	cout <<"현재 : "<< a << ", " << b << "\n";
-	if(cache[a][b]==0) return;
+	if(cache[a][b]!=0) return;
 	int end_a, end_b = n;
 	switch (status) {
 	case 0:end_a = a; end_b = b + 1; break; //가로
