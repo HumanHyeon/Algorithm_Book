@@ -4,7 +4,7 @@ using namespace std;
 int input[] = { 2,4,6,8 };
 
 int tmpGcd(int a, int b) {
-	if (b == NULL)
+	if (b == 0)
 		return a;
 	if (a < b) {
 		int tmp = a;
@@ -21,7 +21,7 @@ int tmpGcd(int a, int b) {
 }
 
 int findGcd() {
-	int nowgcd = NULL;
+	int nowgcd = 0;
 
 	for (int i : input) {
 		nowgcd = tmpGcd(i, nowgcd);
