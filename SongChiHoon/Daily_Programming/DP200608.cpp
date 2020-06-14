@@ -2,17 +2,11 @@
 
 // 시간 복잡도 제한 O(n)
 
-
-
 // Given an integer array, find the greatest common denominator of all elements.
-
-
 
 // input: [3, 2, 1]
 
 // output: 1
-
-
 
 // input: [2, 4, 6, 8]
 
@@ -26,7 +20,7 @@ using namespace std;
 int Euclidean(int a, int b) // 호제법, 인류 최초의 알고리즘, 인터넷 공식 참고, 구하려는 수가 2개일 때만 가능.
 {
 	return a%b ? Euclidean(b, a%b) : b;
-}
+} // O(log n)
 int main()
 {
     vector<int> container;
@@ -49,6 +43,6 @@ int main()
         }
         container[i+1] = Euclidean(container[i], container[i+1]);
     }
-    
+
     cout << "output : " << *container.end();
 }
