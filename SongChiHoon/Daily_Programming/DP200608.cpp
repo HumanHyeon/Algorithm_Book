@@ -21,6 +21,12 @@ int Euclidean(int a, int b) // 호제법, 인류 최초의 알고리즘, 인터�
 {
 	return a%b ? Euclidean(b, a%b) : b;
 } // O(log n)
+
+// int Euclidean(int a, int b, int c)
+// {
+//     return Euclidean(Euclidean(a, b), c);
+// }
+
 int main()
 {
     vector<int> container;
