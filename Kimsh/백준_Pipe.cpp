@@ -1,3 +1,4 @@
+//memorization í•´ì•¼í•¨
 #include <iostream>
 #include<vector>
 using namespace std;
@@ -6,8 +7,9 @@ int n = 0, result = 0;
 void carrying_pipe(int a, int b, int status = 0);
 vector<vector<int>> house;
 int main() {
-	cout << "ÁýÀÇ Å©±â : ";
+	cout << "ì§‘ì˜ í¬ê¸° : ";
 	cin >> n;
+	int cache[n][n]{1,1,0,};
 	for (int i = 0; i < n; i++) {
 		vector<int> element(n);
 		house.push_back(element);
@@ -17,23 +19,24 @@ int main() {
 			cin >> house[i][j];
 		}
 	}
-
+	
 	carrying_pipe(0, 1);
 	cout <<"result : "<< result<<"\n";
 	getchar();
 	return 0;
 }
 void carrying_pipe(int a, int b, int status) {
-	cout <<"ÇöÀç : "<< a << ", " << b << "\n";
+	cout <<"í˜„ìž¬ : "<< a << ", " << b << "\n";
+	if(cache[a][b]!=0) return;
 	int end_a, end_b = n;
 	switch (status) {
-	case 0:end_a = a; end_b = b + 1; break; //°¡·Î
-	case 1:end_a = a + 1;  end_b = b; break;	//¼¼·Î
-	case 2:end_a = a + 1; end_b = b + 1; break;//´ë°¢¼±
-	default: cout << "status ÀÌ»óÇÔ\n"; break;
+	case 0:end_a = a; end_b = b + 1; break; //ê°€ë¡œ
+	case 1:end_a = a + 1;  end_b = b; break;	//ì„¸ë¡œ
+	case 2:end_a = a + 1; end_b = b + 1; break;//ëŒ€ê°ì„ 
+	default: cout << "status ì´ìƒí•¨\n"; break;
 	}
 	if (end_a > n-1 || end_b > n-1 || house[end_a][end_b] == 1) return;
-	else if (end_a == n - 1 && end_b == n - 1) { cout << "Ã£À½!\n"; result += 1; return; }
+	else if (end_a == n - 1 && end_b == n - 1) { cout << "ì°¾ìŒ!\n"; result += 1; cache[a][b]=1; return; }
 	else {
 		if(end_b+1 <n && house[end_a][end_b+1] == 0)
 		carrying_pipe(end_a, end_b, 0);
