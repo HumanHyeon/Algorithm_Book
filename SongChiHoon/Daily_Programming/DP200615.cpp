@@ -20,6 +20,56 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 #include <algorithm>
 using namespace std;
 
+// void firstidea(string input)
+// {
+//     char tempinput;
+
+//     do
+//     {
+//         cin >> tempinput;
+//         if(tempinput == '.')
+//         {
+//             input.pop_back();
+//             continue;
+//         }            
+//         else
+//         {
+//             input.push_back(tempinput);
+//         }
+//     } while (tempinput == '\n');
+    
+// }
+
+void secondidea(string input)
+{
+    string temp;
+    char tempchar;
+    do
+    {
+        do
+        {
+            cin >> tempchar;
+            if (tempchar == '/')
+            {
+                /* code */
+            }
+            
+        } while (tempchar == '/');
+        
+    } while (tempchar == '\n');
+    
+}
+
+int main()
+{
+    string input;
+    string wd = "./";   string pd = "../";
+    string::iterator searchpoint;
+
+    cin >> input;
+
+}
