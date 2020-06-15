@@ -22,7 +22,7 @@ int main()
     for(int i = 0; i < input.length(); i++)
     {
         if(input[i] != ' ')
-        {       
+        {
             start = ('A' <= input[i] && input[i] <= 'Z')? 'A' : 'a';
             letter = start + (input[i] + n - start)%26;
         }

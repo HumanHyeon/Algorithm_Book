@@ -14,7 +14,7 @@ string main()
     for(int i = 0 ; i < size; i++)
     {
         answer += "수박";
-    }    
+    }
     if(n%2 != 0)
         answer += "수";
 

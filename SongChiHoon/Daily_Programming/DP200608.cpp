@@ -37,7 +37,7 @@ int main()
         cin >> a;
         container.push_back(a);
         count++;
-    } while (a >= 20000); // a가 2만을 넘어가면 시간 복잡도가 O(n^2)으로 상승
+    } while (a >= 20000); // a가 2만을 넘어가면 시간 복잡도가 O(n)으로 상승
     
     sort(container.begin(), container.end());
     
