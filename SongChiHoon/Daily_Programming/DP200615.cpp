@@ -2,8 +2,6 @@
 
 // "./"는 현재의 위치를 뜻하고, "../"는 상위 디렉토리를 뜻합니다.
 
-
-
 // Given a file path containing "./" and "../", convert the path to a unix standard file path that does not contain "./" and "../".
 
 
@@ -55,7 +53,7 @@ void secondidea(string input)
             cin >> tempchar;
             if (tempchar == '/')
             {
-                /* code */
+                temp.push_back(tempchar);
             }
             
         } while (tempchar == '/');
