@@ -42,19 +42,29 @@ using namespace std;
     
 // }
 
-void secondidea(string input)
-{
-    string temp;
-    char tempchar;
-    do
-    {
-        do
-        {
-            cin >> tempchar;
-            if (tempchar == '/')
-            {
-                temp.push_back(tempchar);
-            }
+// void secondidea(string input)
+// {
+//     string temp;
+//     string wd = "./";   string pd = "../";
+//     string::iterator searchpoint;
+
+//     searchpoint = input.begin();
+
+//     do
+//     {
+//         if (*searchpoint == '.')
+//         {
+//             if (*++searchpoint == '.')
+//             {
+//                 for (string::iterator i = searchpoint; *i == '/'; i--)
+//                 {
+//                     temp.pop_back();
+//                 }
+//             }
+//             else
+//             {
+//                 temp.pop_back();
+//             }
             
 //         }
 //         else
