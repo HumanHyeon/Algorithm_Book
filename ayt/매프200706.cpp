@@ -9,10 +9,8 @@ int count1(int inp) {
 			++result;
 			break;
 		}
-
 		if (inp % 2 == 1)
 			++result;
-		
 		inp /= 2;
 	}
 
