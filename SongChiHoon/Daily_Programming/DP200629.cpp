@@ -44,7 +44,7 @@ int main()
             count = 0;
             compare++;
         }
-        output.push_back(board['a'])
+        output.push_back(board['a']);
     }
     
 }
