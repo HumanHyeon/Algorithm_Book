@@ -14,6 +14,8 @@
 // // 6 = 1 + 2 + 3
 // // 7 = 불가능
 
+// 수 배열의 연속성을 바탕으로 접근
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
