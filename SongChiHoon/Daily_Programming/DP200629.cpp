@@ -41,7 +41,7 @@ int main()
         else
         {
             board.insert(pair<char, int>(compare, count));
-            count = 0;
+            count = 1;
             compare++;
         }
         output.push_back(board['a']);
