@@ -44,6 +44,8 @@ using namespace std;
 //     }        
 // }
 
+
+// 대칭수 찾기
 int check(vector<int> num)
 {
     vector<int> :: iterator iter;
@@ -52,11 +54,11 @@ int check(vector<int> num)
         return 1;
     if(num[1] != 2)
         return 2;
-    
+    int i = 1;
     for (int answer = 3; answer < *num.end(); answer++)
     {
         iter = find(num.begin(), num.end(), answer);
-        if (iter == num.end())
+        if (answer % 2 == 0 && find(num.begin(), num.end(), answer / 2 - i) != num.end() && find(num.begin(), num.end(), answer / 2 + i) != num.end())
         {
             
         }
