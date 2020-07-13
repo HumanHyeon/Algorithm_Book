@@ -21,35 +21,47 @@
 #include <algorithm>
 using namespace std;
 
-int check(vector<int> numbers)
+// int check(vector<int> numbers)
+// {
+//     vector<int> :: iterator iter;
+//     int answer = 1;
+//     if (find(numbers.begin(), numbers.end(), 1) == numbers.end()) // find()의 반환값이 vector의 끝값이다. == 찾는 원소가 vector속에 없다.
+//         return 1;
+//     if (find(numbers.begin(), numbers.end(), 2) == numbers.end())
+//         return 2;
+
+//     for (int answer = 2; answer < 9999; answer++)
+//     {
+//         int jack = (2 * answer - 1) / 2;
+//         if (find(numbers.begin(), numbers.end(), jack) != numbers.end() && find(numbers.begin(), numbers.end(), jack+1) != numbers.end())
+//         {
+//             return jack++;
+//         }
+//         else
+//         {
+//             return jack;
+//         }        
+//     }        
+// }
+
+int check(vector<int> num)
 {
-    int answer = 1;
-    bool checking;
+    vector<int> :: iterator iter;
 
-    if (*numbers.begin() > 1)
+    if(num[0] != 1)
+        return 1;
+    if(num[1] != 2)
+        return 2;
+    
+    for (int answer = 3; answer < *num.end(); answer++)
     {
-        return *numbers.begin() - 1;
-    }
-
-    for (int i = 0; i < 9999; i++)
-    {
-        if (numbers[i] == answer)
-            checking = true;
-        if (numbers[i] + numbers[i+1] == answer)
+        iter = find(num.begin(), num.end(), answer);
+        if (iter == num.end())
         {
-            checking = true;
+            
         }
-        if (numbers[i] + numbers[i+1] + numbers[i+2] == answer)
-        {
-            checking = true;
-        }
-        
-        // 아 몰라~
-        
     }
     
-
-    return answer;
 }
 
 int main()
@@ -57,11 +69,14 @@ int main()
     vector<int> numbers;
     int temp;
     
+    cout << "Input(end in negative number) : ";
     do
     {
         cin >> temp;
+        if (temp < 0)
+            break;
         numbers.push_back(temp);
-    } while (temp > 0);
+    } while (1);
 
     sort(numbers.begin(), numbers.end());
 
