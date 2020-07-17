@@ -1,28 +1,47 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
-int count1(int inp) {
-	int result = 0;
+void smallInt(int inp[], int n) {
+	int tmp, sum = 0;
+	bool check = false;
 
-	while (1) {
-		if (inp == 1) {
-			++result;
+	for (int i = 0; i < n; ++i) {
+		if (inp[i] != pow(2, i)) {
+			check = true;
 			break;
-		}
-		if (inp % 2 == 1)
-			++result;
-		inp /= 2;
+		}		
 	}
 
-	return result;
+	if (check == false) {
+		for (int i = 0; i < n; ++i) {
+			sum += inp[i];
+		}
+		cout << "output : " << ++sum;
+	}
+
+	if (inp[0] != 1)
+		cout << "output : 1";
+	else {
+		for (int i = 1; i <= n; ++i) {
+			if (inp[i - 1] != i) {
+				tmp = i;
+				break;
+			}
+		}
+
+		for (int i = 1; i < tmp; i++) {
+			sum += i;
+		}
+		cout << "output : " << ++sum;
+	}
 }
 
 int main() {
-	int input;
+	int input[] = { 1,2,3,8 };
+	int size = sizeof(input) / sizeof(int);
 
-	cout << "input : ";
-	cin >> input;
-	cout << "output : " << count1(input) << endl;
+	smallInt(input, size);
 
 	return 0;
 }
