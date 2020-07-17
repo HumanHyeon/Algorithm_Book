@@ -14,10 +14,10 @@ int solution(vector<int> priorities, int location) {
     max = tmp[tmp.size()-1];
     
     while(1){
-        if(priorities[location]==-1)
+        if(priorities[location]==0)
             break;
         if(priorities[i] == max){
-            priorities[i] = -1;
+            priorities[i] = 0;
             ++answer;
             check = true;
         }
