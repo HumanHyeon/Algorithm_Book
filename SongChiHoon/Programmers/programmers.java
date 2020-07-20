@@ -1,4 +1,3 @@
-import java.util.Vector;
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
         // Vector<Integer> tempanswer = new Vector<Integer>(0, 1);
