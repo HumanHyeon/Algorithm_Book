@@ -17,7 +17,7 @@ void generate(int n, int m, string s) {
 
 int main() {
 	string s = "";
-	int k;		cin >> k;		skip = k;
+	int k;		cin >> k;		skip = k - 1;
 	int n, m;	cin >> n >> m;
 	generate(n, m, s);
 }
