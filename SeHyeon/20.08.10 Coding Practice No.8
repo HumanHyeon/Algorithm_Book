@@ -4,9 +4,9 @@ using namespace std;
 long long cache[2000];
 
 void dpCalc(long long n) {
-    if (cache[n] == 0) {
-        if (cache[n - 2] == 0)  dpCalc(n - 2);
-        if (cache[n - 1] == 0)  dpCalc(n - 1);
+    if (!cache[n]) {
+        if (!cache[n - 2])  dpCalc(n - 2);
+        if (!cache[n - 1])  dpCalc(n - 1);
         cache[n] = (cache[n - 2]  + cache[n - 1]) % MOD;
     }
 }
