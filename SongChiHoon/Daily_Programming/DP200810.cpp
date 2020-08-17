@@ -9,8 +9,7 @@ int main() {
     int i = 0;
     int *input = new int[10];
 
-    do
-    {
+    do {
         cout << "input : ";
         cin >> temp;
         input[i] = temp;

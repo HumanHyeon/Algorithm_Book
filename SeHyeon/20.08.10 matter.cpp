@@ -31,7 +31,6 @@ int solution(int* arr, int start, int end, int index) {
 	}
 }
 
-
 int main() {
 	//int arr[] = { 0, 1, 2 ,3, 5, 6, 7, 8, 9 };
 	//int arr[] = { -30, 1, 4, 60 };
