@@ -12,6 +12,13 @@ int count_weight(queue<int> bridge_truck) {
     return tmp;
 }
 
+//int count_weight(queue<int> bridge_truck) {
+//    if (bridge_truck.empty())    return 0;
+//    int tmp = bridge_truck.front();
+//    bridge_truck.pop();
+//    return tmp + count_weight(bridge_truck);
+//}
+
 void all_plus_hour(queue<int>& bridge_hour) {
     int size = bridge_hour.size();
     while (size--) {
