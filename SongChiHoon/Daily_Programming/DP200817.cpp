@@ -6,7 +6,7 @@ bool isfourpower(int input) {
     if (editinput % 4 != 0) {
         return false;
     }
-    else {
+    else if(editinput < 4 && editinput > 1) {
         isfourpower(editinput);
         return true;
     }
