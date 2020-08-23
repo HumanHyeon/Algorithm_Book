@@ -13,7 +13,7 @@ int solution(int bridge_length, int weight, vector<int> truck_weights) {
         for(int i=0;i<size;++i){
             int l = length.front();
             length.pop();
-            if(l<=1){
+            if(l==1){
                 sum -= now.front();
                 now.pop();
                 continue;
