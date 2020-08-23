@@ -2,29 +2,25 @@
 using namespace std;
 
 bool isfourpower(int input) {
-
     int editinput = input / 4;
-
-    if (editinput % 4 != 0) {
+    if (editinput % 4 != 0 || editinput < 4) {
         return false;
     }
     else if(editinput == 1) {
         return true;
     }
-
     return isfourpower(editinput);
 }
 
 int main() {
     int input;
-
-    cin >> "input : " >> input;
-
     while (input <= 0) {
-        cout << "Input number must bigger than 0" << endl;
-        cin >> "input : " >> input;
+        cout << "input : ";
+        cin >> input;
+        if (input <= 0) {
+            cout << "Input number must bigger than 0" << endl;
+        }
     }
-
     if (isfourpower(input)) {
         cout << "Output : true";
     }
