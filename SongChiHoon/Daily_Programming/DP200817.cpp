@@ -3,13 +3,13 @@ using namespace std;
 
 bool isfourpower(int input) {
     int editinput = input / 4;
-    if (editinput % 4 != 0) {
+    if (editinput % 4 != 0 || editinput < 4) {
         return false;
     }
-    else if(editinput < 4 && editinput > 1) {
-        isfourpower(editinput);
+    else if(editinput == 1) {
         return true;
     }
+    return isfourpower(editinput);
 }
 
 int main() {
@@ -27,6 +27,5 @@ int main() {
     else {
         cout << "Output : false";
     }
-    
     return 0;
 }
