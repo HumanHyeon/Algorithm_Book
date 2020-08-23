@@ -3,11 +3,11 @@ using namespace std;
 
 bool isfourpower(int input) {
     int editinput = input / 4;
-    if (editinput % 4 != 0 || editinput < 4) {
-        return false;
-    }
-    else if(editinput == 1) {
+    if (editinput == 1) {
         return true;
+    }
+    else if(editinput == 0) {
+        return false;
     }
     return isfourpower(editinput);
 }
