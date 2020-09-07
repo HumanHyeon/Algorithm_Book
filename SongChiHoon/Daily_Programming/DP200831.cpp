@@ -10,15 +10,28 @@ using namespace std;
 
 int main() {
 
-    int N;
-    int missing_number;
-    cout << "Type N : ";
-    cin >> N;
+    int N;    int missing_number;
+    cout << "Type N : ";    cin >> N;
 
     int *numbers = new int[N];
 
+    for (int i = 0; i < N; i++) {
+        numbers[i] = i + 1;
+    }
+
     srand((unsigned int)time(0));
     missing_number = rand() % N;
+
+    numbers[missing_number] = 0;
+
+    int i = 0;    int point;
+
+    do {
+        point = numbers[i];
+        i++;
+    } while ( point != 0 );
+
+    cout << "answer is " << --i;
 
     return 0;
 }
