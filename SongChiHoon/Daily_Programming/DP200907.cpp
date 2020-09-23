@@ -38,6 +38,79 @@ void add(int key) {
 	}
 }
 
+void ascending_order_add(int key) {
+	NODE * new_node = new NODE;
+	new_node->DATA = key;
+	new_node->next = NULL;
+
+	if (nodelist == NULL) {
+		nodelist = new_node;
+	}
+	else {
+		NODE * cur = nodelist;
+		NODE * prev = NULL;
+
+		// if first element is larger than key
+		if (cur->DATA > new_node->DATA) {
+			new_node->next = cur;
+			nodelist = new_node;
+		}
+
+		else {
+			while(cur != NULL && cur->DATA < new_node->data) {
+				prev = cur;
+				cur = cur->next;
+			}
+			// Add in middle
+			if (cur != NULL) {
+				new_node->next = cur;
+				prev->next = new_node;
+			}
+			// Add to end
+			else {
+				prev->next = new_node;
+			}
+		}
+	}
+}
+bool remove(int key) {
+	if (nodelist == NULL) {
+		return false;
+	}
+
+	if (nodelist->DATA == key) {
+		NODE * cur = nodelist;
+		nodelist = nodelist->next;
+		delete cur;
+		return true;
+	}
+	else {
+		NODE * cur = nodelist -> next;
+		NODE * prev = nodelist;
+		while(cur != NULL && cur->DATA != key) {
+			prev = cur;
+			cur = cur->next;
+		}
+
+		if (cur == NULL)
+		{
+			return false;
+		}
+
+		prev->next = cur->next;
+		delete cur;
+		return true;
+	}
+}
+
+bool previouschecker(NODE *node) {
+
+}
+
+void reconnector(NODE *prev, NODE *next) {
+	prev->next = next;
+}
+
 void printnodelist(NODE *list) {
 	NODE *current = list;
 	while (current != NULL) {
@@ -50,6 +123,19 @@ void printnodelist(NODE *list) {
 
 int main() {
 	int input[6] = {3, -5, 5, 1, 2, 4};
-	nodelist
+	for (int i = 0; i < 6; i++) {
+		add(i);
+	}
 
+	for (int i = 0; i < 6; i++)
+	{
+		int previousvalue = nodelist->DATA;
+		if(nodelist->next == NULL) {
+			break;
+		}
+		nodelist = nodelist->next;
+		if (previousvalue + nodelist->DATA == 0) {
+			delete nodelist;
+		}
+	}
 }
