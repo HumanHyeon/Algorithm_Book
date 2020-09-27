@@ -32,8 +32,8 @@ void dfs(int cnt, int n, string numbers) {
         int ten = 1, tmp = 0;
         
         for (int i = v.size() - 1; i >= 0; --i) {
-            tmp += v[i] * ten;
-            ten *= 10;
+            tmp += v[i] * pow(10,j);
+            ++j;
         }
         s.insert(tmp);
     }
