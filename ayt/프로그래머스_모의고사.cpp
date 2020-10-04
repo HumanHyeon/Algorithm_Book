@@ -37,8 +37,7 @@ vector<int> solution(vector<int> answers) {
     
     int max = *max_element(result.begin(), result.end());
     for(int i=0;i<3;++i){
-        if(max==result[i])
-            answer.push_back(i+1);
+        if(max==result[i]) answer.push_back(i+1);
     }
     
     return answer;
