@@ -15,21 +15,21 @@ vector<int> solution(vector<int> answers) {
     int cnt=0;
     
     for(int i=0;i<answers.size();++i){
-        if(cnt==5) cnt=0;  
+        if(cnt==spz[0].size()) cnt=0;  
         if(answers[i]==spz[0][cnt]) ++result[0];
         
         ++cnt;
     }
     cnt=0;
     for(int i=0;i<answers.size();++i){
-        if(cnt==8) cnt=0;      
+        if(cnt==spz[1].size()) cnt=0;      
         if(answers[i]==spz[1][cnt]) ++result[1];
         
         ++cnt;
     }
     cnt=0;
     for(int i=0;i<answers.size();++i){
-        if(cnt==10) cnt=0;
+        if(cnt==spz[2].size()) cnt=0;
         if(answers[i]==spz[2][cnt]) ++result[2];
         
         ++cnt;
