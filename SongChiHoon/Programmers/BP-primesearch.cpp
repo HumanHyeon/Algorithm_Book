@@ -1,38 +1,41 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
-#include <hash_set>
+#include <set>
 
 using namespace std;
 
-int numcount(hash_set<char> numberset, int digit) {
-	int ret;
-	string temp;
-	if (digit == 0)
-	{
-		return numberset
+void numbermaking(set<string> numberset, string numbers, int digit, string temp = "") {
+	digit -= 1;
+	if (digit >= 0) {
+		for (int i = 0; i < numbers.size(); i++) {
+			temp += numbers[i];
+			numberset.insert(temp);
+			numbermaking(numberset, numbers, digit, temp);
+		}
 	}
+}
 
-	for (int i = 0; i < digit; i++)
-	{
-		temp += numberset;
+int numcount(set<string> numberset) {
+	int primecounter = 0;
+	set<string>::iterator it;
+	int target;
+	for (it = numberset.begin(); it != numberset.end(); it++) {
+		target = stoi(*it);
+		for (int i = 2; i < target; i++) {
+			if(target % i != 0) {
+				primecounter++;
+			}
+		}
 	}
-
-	return ret;
+	return primecounter;
 }
 
 int solution(string numbers) {
-	hash_set<char> numberset;
+	set<string> numberset;
     int answer = 0;
-
-    for (int i = 0; i < numbers.size(); i++) {
-    	numberset.insert(numbers[i]);
-    }
-
-    string temp;
-    for (int i = 0; i < numbers.size(); i++)
-    {
-    	answer += numcount(numberset, i + 1);
-    }
+	string temp;
+	numbermaking(numberset, numbers, numbers.size(), temp);
+	answer = numcount(numberset);
     return answer;
 }

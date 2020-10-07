@@ -13,6 +13,7 @@
         "unordered_map": "cpp",
         "xhash": "cpp",
         "xtree": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "hash_set": "cpp"
     }
 }
