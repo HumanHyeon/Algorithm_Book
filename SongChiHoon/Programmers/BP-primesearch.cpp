@@ -6,7 +6,7 @@
 using namespace std;
 
 void numbermaking(set<string> numberset, string numbers, int digit, string temp = "") {
-	digit -= 1;
+	digit = digit - 1;
 	if (digit >= 0) {
 		for (int i = 0; i < numbers.size(); i++) {
 			temp += numbers[i];
