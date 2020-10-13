@@ -29,7 +29,6 @@ void findPrime(int n) {
         ++answer2;
 }
 
-
 void dfs(int cnt, int n, string numbers) {
     if (cnt == n) {
         int ten = 1, tmp = 0;

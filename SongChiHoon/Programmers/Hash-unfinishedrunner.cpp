@@ -7,7 +7,6 @@ using namespace std;
 string solution(vector<string> participant, vector<string> completion) {
     string answer = "";
     map<string, int> hashmap;
-    bool checker = false;
     for (int i = 0; i < participant.size(); i++) {
         hashmap[participant[i]] += 1;
     }
