@@ -1,26 +1,31 @@
 #include <string>
 #include <vector>
-#include <map>
+#include <algorithm>
 
 using namespace std;
 
 bool solution(vector<string> phone_book) {
     bool answer = true;
-    int small = 1000;
-    int smallindex;
-    for (int i = 0; i < phone_book.size(); ++i) {
-    	if (phone_book[i].size() < small) {
-    		small = phone_book.size();
-    		smallindex = i;
-    	}
+    string temp, comp;
+    int smallsize = 987654321;
+    int smallindex = 0;
+    
+    for (int i = 0; i < phone_book.size(); i++) {
+        if(phone_book[i].size() < smallsize) {
+            smallsize = phone_book[i].length();
+            smallindex = i;
+        }
     }
-    string smallword = phone_book[smallindex];
-    phone_book.erase(smallindex, smallindex);
-    for (int i = 0; i < phone_book.size(); ++i) {
-    	if (phone_book[i].compare(0, smallword.size(), smallword) == 0) {
-    		answer = false;
-    	}
+    
+    temp = phone_book[smallindex];
+    
+    for(int i = 0; i < phone_book.size(); i++) {
+        if (i != smallindex) {
+            comp = phone_book[i].substr(0, smallsize);
+            if(temp == comp) {
+                return false;
+            }
+        }
     }
-
     return answer;
 }
