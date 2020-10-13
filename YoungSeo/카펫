@@ -8,13 +8,12 @@ vector<int> solution(int brown, int yellow) {
     
     int width = brown + yellow;
     
-    for(int a=1;a<=width;a++){
+    for(int a=3;a<width;a++){
         if(width%a==0){
             
             int b= width/a;
-            if(a<b)
-                continue;
-            
+        if(a<b)
+            continue;
             int yellownum=(a-2) *(b-2);
             int brownnum= width - yellownum;
             if(yellownum == yellow && brownnum==brown){
