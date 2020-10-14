@@ -5,7 +5,7 @@ using namespace std;
 
 vector<int> solution(int brown, int yellow) {
     vector<int> answer;
-    int h,v,n = brown+yellow;;                        //가로, 세로
+    int n = brown+yellow;;                        //가로, 세로
     
     for(int i=1;i*i<=n;++i){
         if(n%i==0 && yellow==(i-2)*(n/i-2)){          //brown + yellow == h * v
