@@ -49,7 +49,6 @@ vector<string> solution(vector<string> files) {
 
     stable_sort(hnt.begin(), hnt.end(), sortTuple);
 
-
     string str = "";
     for (auto elem : hnt) {
         answer.push_back(files[get<2>(elem)]);
