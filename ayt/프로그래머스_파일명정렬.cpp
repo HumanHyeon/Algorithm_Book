@@ -19,7 +19,6 @@ vector<string> solution(vector<string> files) {
     vector<string> answer;
     string head;
     string number;
-    string tail;
     bool ck = false;
     vector<tuple <string, string, int>> hnt;
     vector<string> tmp = files;
@@ -44,7 +43,6 @@ vector<string> solution(vector<string> files) {
         ck = false;
         head.clear();
         number.clear();
-        tail.clear();
     }
 
     stable_sort(hnt.begin(), hnt.end(), sortTuple);
