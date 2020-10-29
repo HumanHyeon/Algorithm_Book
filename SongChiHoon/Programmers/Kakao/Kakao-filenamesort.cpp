@@ -4,6 +4,15 @@
 
 using namespace std;
 
+char upperchar(char c) {
+    if ('a' < c && c < 'z') {
+        return c - 32;
+    }
+    else {
+        return c;
+    }
+}
+
 vector<string> solution(vector<string> files) {
     vector<string> answer;
     string temp, tempnum, temphead, temptail;
