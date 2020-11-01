@@ -6,8 +6,6 @@
 #define NUMBER 1
 using namespace std;
 
-vector<string> headInfo;
-
 void sortByOrder(vector<string>& files, queue<int> order, int end, int start = 0) {
     vector<string> tmp = files;
     files.clear();
@@ -34,10 +32,8 @@ void order(vector<string>& files, int mode, int end, int start = 0) {
             sortInfo.push_back(make_pair(head, i));
         }
         stable_sort(sortInfo.begin(), sortInfo.end());
-        for (int i = 0; i < sortInfo.size(); i++) {
-            headInfo.push_back(sortInfo[i].first);
+        for (int i = 0; i < sortInfo.size(); i++) 
             returnOrder.push(sortInfo[i].second);
-        }
     }
     else if (mode == NUMBER){
         vector<pair<int, int>> sortInfo;
@@ -56,13 +52,7 @@ void order(vector<string>& files, int mode, int end, int start = 0) {
 }
 
 vector<string> solution(vector<string> files) {
+    order(files, NUMBER, files.size());
     order(files, HEAD, files.size());
-    for (int start = 0; start < headInfo.size() -1; start++) {
-        int end;
-        for (end = start + 1; end < headInfo.size(); end++) 
-            if (headInfo[start] != headInfo[end])    break;
-        if (start - end == -1)  continue;
-        order(files, NUMBER, end, start);
-    }
     return files;
 }
