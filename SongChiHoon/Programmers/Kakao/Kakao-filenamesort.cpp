@@ -14,17 +14,23 @@ char upperchar(char c) {
 }
 
 vector<string> solution(vector<string> files) {
+
     vector<string> answer;
+
     string temp, tempnum, temphead, temptail;
     bool tail = false;
     int tempindex = 0;
+
     vector<string> HEAD;
     vector<int> NUMBER;
     vector<string> TAIL;
+
     for(auto it = files.begin(); it != files.end(); it++) {
+
         temp = *it;
+
         while(tempindex != temp.size()) {
-            if(temp[tempindex] > '0' && temp[tempindex] < '9') {
+            if('0' < temp[tempindex] && temp[tempindex] < '9') {
                 tempnum += temp[tempindex];
                 tail = true;
             }
@@ -32,11 +38,14 @@ vector<string> solution(vector<string> files) {
             else { temptail += temp[tempindex]; }
             tempindex++;
         }
+
         HEAD.push_back(temphead);
         NUMBER.push_back(stoi(tempnum));
         TAIL.push_back(temptail);
+
         tempindex = 0;
         tail = false;
+
         temphead.clear();
         tempnum.clear();
         temptail.clear();
