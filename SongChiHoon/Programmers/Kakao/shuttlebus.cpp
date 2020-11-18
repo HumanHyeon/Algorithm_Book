@@ -3,9 +3,7 @@
 #include <algorithm>
 using namespace std;
 
-int change_min(string time)
-
-{
+int change_min(string time) {
 	int min = 0;
 	min = ((time[0] - '0') * 10 + time[1] - '0') * 60;
 	min += ((time[3] - '0') * 10 + time[4] - '0');
@@ -35,7 +33,7 @@ string solution(int n, int t, int m, vector<string> timetable) {
 			if (max_crew == 0) { 
                 answer_min = timetable_min[check - 1] - 1;
             }
-			else { 
+			else {
                 answer_min = start_time; 
             }
 		}
