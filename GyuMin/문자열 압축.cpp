@@ -9,8 +9,6 @@ int solution(string s)
 
     int zip = 0;
 
-    string cmp;
-
     int count = 1;
 
     for (int i = 1; i <= s.size(); i++)//1에서 주어진 문자열의 길이 만큼
