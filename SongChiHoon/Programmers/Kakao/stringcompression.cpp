@@ -30,7 +30,6 @@ int solution(string s) {
                     count = 1;
                 }
             }
-
             if(i + j >= length) {
                 if (count != 1) {
                     ret = ret + to_string(count) + base;
