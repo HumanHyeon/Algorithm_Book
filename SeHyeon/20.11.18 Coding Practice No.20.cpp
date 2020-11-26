@@ -90,7 +90,7 @@ void calc (string s, int n) {
 int solution(string s) {
     int answer = 0;
 
-    for (int i = 1; i <= s.size(); i++)
+    for (int i = 1; i <= s.size() / 2; i++)
         calc(s, i);
 
 
