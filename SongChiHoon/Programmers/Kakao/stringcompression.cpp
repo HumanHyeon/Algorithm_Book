@@ -4,19 +4,19 @@
 using namespace std;
 
 int solution(string s) {
-    int answer = 0;
+    int answer = s.length();
     int length = s.length();
-    if(length == 1) {
+    if (length == 1) {
         answer = 1;
     }
 
-    for (int i = 1; i <= length/2; i++) {
+    for (int i = 1; i <= length / 2; i++) {
         int count = 1;
         string base, comp, ret;
         base = s.substr(0, i);
-        for (int j = i; j < length; j+=i) {
+        for (int j = i; j < length; j += i) {
             comp = s.substr(j, i);
-            if(!(base.compare(comp))) {
+            if (!(base.compare(comp))) {
                 count++;
             }
             else {
@@ -30,7 +30,7 @@ int solution(string s) {
                     count = 1;
                 }
             }
-            if(i + j >= length) {
+            if (i + j >= length) {
                 if (count != 1) {
                     ret = ret + to_string(count) + base;
                     break;
@@ -41,7 +41,7 @@ int solution(string s) {
                 }
             }
         }
-        answer = (length > ret.length()) ? ret.length() : length;
+        answer = (answer > ret.length()) ? ret.length() : answer;
     }
     return answer;
 }
