@@ -9,23 +9,18 @@ string solution(int n)
 
 	for (;;)
 	{
-		int a;
-
 		switch (n % 3)
 		{
 		case 0:
 			answer = "4" + answer;
-			a = 3;
 			break;
 
 		case 1:
 			answer = "1" + answer;
-			a = 1;
 			break;
 
 		case 2:
 			answer = "2" + answer;
-			a = 2;
 			break;
 		}
 
