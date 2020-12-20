@@ -1,7 +1,6 @@
 #include <vector>
 using namespace std;
 
-int number_of_area, max_size_of_one_area;
 int size_of_one_area, color; 
 
 void dfs(vector<vector<int>>& picture, int i, int j) {
@@ -15,7 +14,7 @@ void dfs(vector<vector<int>>& picture, int i, int j) {
 }
 
 vector<int> solution(int m, int n, vector<vector<int>> picture) {
-    number_of_area = max_size_of_one_area = 0;
+    int number_of_area = 0, max_size_of_one_area = 0;
     for (int i = 0; i < m; i++) 
         for (int j = 0; j < n; j++) {
             color = picture[i][j];
