@@ -13,21 +13,21 @@ vector<int> solution(int n) {
     {
         switch(state)
         {
-            case 0:
+            case 0:  //진행방향 : 아래
                 for(int j = i; j < n; j++)
                     arr[x++][y] = num++;
                 x--;
                 y++;
                 state = 1;
                 break;
-            case 1:
+            case 1:   //진행방향 : 오른쪽
                 for(int j = i; j < n; j++)
                     arr[x][y++] = num++;
                 x--;
                 y -= 2;
                 state = 2;
                 break;
-            case 2:
+            case 2:   //진행방향 : 위
                 for(int j = i; j < n; j++)
                     arr[x--][y--] = num++;
                 x += 2;
