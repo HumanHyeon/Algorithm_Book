@@ -16,8 +16,7 @@ string solution(string w) {
     if (w == "") return ""; //step 1
 
     int left = 0, right = 0, i; //step 2
-    BRACKET(w[0]);
-    for (i = 1; i < w.size(); i++) {
+    for (i = 0; i < w.size(); i++) {
         BRACKET(w[i]);
         if (left == right) break;
     }
@@ -30,9 +29,10 @@ string solution(string w) {
     else { //step 4
         string result;
         result = "(" + solution(v) + ")";   //4-1, 4-2, 4-3
-        for (int j = 1; j < u.size() - 1; j++)
+        for (int j = 1; j < u.size() - 1; j++) {
             if (u[j] == '(') result += ")";
             else result += "(";
+        }
         return result;
     }
 }
