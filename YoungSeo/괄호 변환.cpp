@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-bool Correct(string s) {
+bool Possible(string s) {
 	int sum = 0;
 	for (int i = 0; i < s.length(); i++) {
 		if (s.at(i) == '(')
@@ -32,8 +32,8 @@ string func(string s) {
 			break;
 		}
 	}
-	if (Correct(u))
-		return u + func(v);
+	if (Possible(u))
+		return func(v) + u;
 	else {
 		string temp = "(" + func(v) + ")";
 		u = u.substr(1, u.length() - 2);
