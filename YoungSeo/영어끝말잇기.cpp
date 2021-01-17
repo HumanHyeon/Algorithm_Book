@@ -11,15 +11,14 @@ vector<int> solution(int n, vector<string> words) {
     for(int i = 1; i < words.size(); i++){
         string p1 = words[i-1];
         string p2 = words[i];
-        
+        int p1LENGTH = p1.length();
         for(int j = 0; j < i; j ++){
             if(words[j] == words[i]){
                 flag = 1;
                 break;
             }
         }
-        
-        int p1LENGTH = p1.length();
+     
         
         if(p1[p1LENGTH - 1] != p2[0])
             flag = 1;
