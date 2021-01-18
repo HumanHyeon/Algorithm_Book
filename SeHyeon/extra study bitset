@@ -1,0 +1,51 @@
+#include <iostream>
+#include <bitset>
+using namespace std;
+
+int main() {
+	bitset<8> bs;	//0으로 초기화
+	cout << bs << endl;
+
+	bs.set();		//1으로 모두 초기화
+	cout << bs << endl;	
+
+	bs.reset();		//0으로 모두 초기화
+	cout << bs << endl;	
+
+	cout << bs.all() << " " << bs.any() << " " << bs.none() << endl;
+	//		모든 비트가 1인가		1인 비트가 있는가		1인 비트가 없는가(모든 비트가 0인가)
+
+	bs.flip(2);	//인덱스 2에 위치한 비트 반전
+	cout << bs << endl;
+
+	bs.flip();	//모든 비트 반전
+	cout << bs << endl;
+
+	bs.set(2);	//인덱스 2에 위치한 비트 1로 설정
+	cout << bs << endl;
+	
+	bs.reset(2);	//인덱스 2에 위치한 비트 0으로 설정
+	cout << bs << endl;
+
+	cout << bs.test(1) << " " << bs.test(2) <<  endl;	//해당 위치에 있는 비트가 1이면 True
+
+
+//Ver.2
+	bitset<8> b1 = 7;			//b1(7)
+	bitset<8> b2("00000111");	//b2(7), b2 = b1
+	cout << b1 << "\t" << b2 << endl;
+
+	b1[3] = 1;	//b1.set(3);
+	cout << b1 << "\t" << b2 << endl;
+
+	bitset<8> b3 = (b1 ^ b2);	//b1 b2 Xor연산
+	cout << b3 << endl;
+
+	//^ << >> ~ | & == != 모두 가능
+	
+	string s = b1.to_string();	//문자열로 변환 가능
+	cout << s << endl;
+
+	unsigned long ul = b2.to_ulong();	//부호없는 정수형 변환 가능
+	cout << ul << endl;
+}
