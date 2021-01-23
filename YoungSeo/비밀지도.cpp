@@ -14,7 +14,7 @@ vector<string> solution(int n, vector<int> arr1, vector<int> arr2) {
             if (s3[j] == '1') s3[j] = '#';
             else s3[j] = ' ';
         }
-        answer.push_back(s3.substr(16-n, 16)); s3 = "";
+        answer.push_back(s3.substr(16-n, 16)); 
     }
     return answer;
 }
