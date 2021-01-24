@@ -1,72 +1,50 @@
-// #include <string>
-// #include <vector>
-// #include <algorithm>
-// #include <iostream>
-
-// using namespace std;
-
-// vector<int> solution(int N, vector<int> stages) {
-//     vector<int> answer;
-    
-//     sort(stages.begin(), stages.end());
-
-//     auto point = stages.begin();
-//     int stage_index = 0;
-//     int count = 0;
-//     int temp = *stages.begin();
-//     int users = stages.size();
-//     int *failure = new int[N];
-
-//     for(int i = 0; i < users; i++) {
-//         if(temp == stages[i]) {
-//             count++;
-//         }
-//         else {
-//             failure[stage_index] = count;
-//             temp = stages[i];
-//             count++;
-//         }
-//     }
-
-//     for (int i = 0; i < N; i++) {
-//         cout << failure[i];
-//     }
-    
-//     return answer;
-// }
-
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 
 using namespace std;
 
-vector<int> solution(int N, vector<int> stages) {
-    vector<int> answer;
-    
-    sort(stages.begin(), stages.end());
-    
-    int now = *stages.begin();
-    int count = 0;
-    int stage_index = 0;
-    int *failure = new int[N];
-    
-    for(int i = 0; i < stages.size(); i++) {
-        if(now == stages[i]) {
-            count++;
-        }
-        else{
-            failure[stage_index] = count;
-            stage_index++;
-            now = stages[i];
-            count = 1;
-        }
-    }
+bool compare(int& a, int& b){
+    return a > b ? true : false;
+}
 
-    for (int i = 0; i < N; i++) {
-        cout << stages[i] << " ";
+bool pairCompare(const pair<int,double> &a, const pair<int, double> &b){
+    if(a.second > b.second) return true;
+    else if(a.second == b.second ){
+        if(a.first < b.first) return true;
+        else return false;
+    } else return false;
+}
+
+vector<int> solution(int N, vector<int> stages) {
+    vector<pair<int,double>> fail;
+    vector<int> answer; 
+    
+    sort(stages.begin(), stages.end(), compare);
+
+    int num = 1;
+    while(num <= N){
+        int total = 0;
+        int stay = 0;
+        for(int i = 0; i < stages.size(); i++){
+            if(stages[i] < num) break;
+            if(stages[i] >= num) total++; 
+            if(stages[i] == num) stay++; 
+        }
+        double rate; 
+        if(stay == 0){
+            rate = 0; 
+        } else {
+            rate = (double)stay / total;
+        }
+        fail.push_back(make_pair(num,rate));
+        num++;
     }
     
+    sort(fail.begin(), fail.end(), pairCompare); 
+
+    for(int i = 0; i < N; i++){
+        answer.push_back(fail[i].first);
+    }
     return answer;
 }
