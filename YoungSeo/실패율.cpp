@@ -21,7 +21,7 @@ vector<int> solution(int N, vector<int> stages) {
 
     int num = 1; 
     double rate; //실패율
-    while(num <= N){ //N+1은 고려하지 않음
+    while(num <= N){  
         int total = 0; //스테이지를 통과한 전체 인원 수
         int notpass = 0; // 통과하지 못한 사람 수
         for(int i = 0; i < stages.size(); i++){
