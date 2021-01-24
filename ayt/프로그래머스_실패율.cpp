@@ -22,9 +22,7 @@ vector<int> solution(int N, vector<int> stages) {
         else p.push_back(make_pair(tmp / si, i + 1));
         si -= tmp;
     }
-
     sort(p.begin(), p.end(), compare);
-
     for (auto elem : p) answer.push_back(elem.second);
 
     return answer;
