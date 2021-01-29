@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
@@ -38,7 +39,7 @@ string solution(string m, vector<string> musicinfos) {
             allMusic += music;
             minute -= music.size();
         }
-        if (allMusic.find(m) != string::npos) answer = make_pair(minute, name);
+        if (allMusic.find(m) != string::npos) answer = make_pair(allMusic.size(), name);
     }
 
     return answer.second;
