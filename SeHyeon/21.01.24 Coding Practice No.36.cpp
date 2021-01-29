@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
@@ -5,8 +6,7 @@ using namespace std;
 void unionChar(string& input) {
     string result = "";
     for (int i = 0; i < input.size(); i++)
-        if (i == input.size() - 1) result += input[i];
-        else if (input[i + 1] == '#') result += tolower(input[i]), i++;
+        if (input[i + 1] == '#') result += tolower(input[i]), i++;
         else result += input[i];   
     input = result;
 }
