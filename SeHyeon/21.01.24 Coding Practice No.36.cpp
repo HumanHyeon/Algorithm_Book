@@ -1,7 +1,5 @@
-#include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 void unionChar(string& input) {
@@ -32,7 +30,6 @@ string solution(string m, vector<string> musicinfos) {
         for (index++; index < musicinfos[i].size(); index++) music += musicinfos[i][index];
         
         unionChar(music);
-
         while (true) {
             if (music.size() >= minute) {
                 allMusic += music.substr(0, minute);
@@ -45,27 +42,4 @@ string solution(string m, vector<string> musicinfos) {
     }
 
     return answer.second;
-}
-
-int main() {
-    /*string m = "ABCDEFG";
-    vector<string> musicinfos = { "13:50,14:04,HELLO,CDEFGAB", "13:00,13:05,WORLD,ABCDEF" };
-    */
-  /*  string m = "ABC";
-    vector<string> musicinfos = { "12:00,12:14,HELLO,C#DEFGAB", "13:00,13:05,WORLD,ABCDEF" };
-  */
-    /*string m = "CDEFGAC";
-    vector<string> musicinfos = { "12:00,12:06,HELLO,CDEFGA" };*/
-
-    //string m = "CCB";
-    //vector<string> musicinfos = { "03:00,03:10,FOO,CCB#CCB", "04:00,04:08,BAR,ABC" };
-    
-    string m = "A#";
-    vector<string> musicinfos = { "13:59,14:02,HELLO,AA#", "13:00,13:05,WORLD,ABCDEF" };
-
-    cout << solution(m, musicinfos) << endl;
-
-
-    //string m = "A#B#C#DEF#G";
-    //cout << unionChar(m) << endl;
 }
