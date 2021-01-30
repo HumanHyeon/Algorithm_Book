@@ -1,72 +1,34 @@
-// #include <string>
-// #include <vector>
-// #include <algorithm>
-// #include <iostream>
-
-// using namespace std;
-
-// vector<int> solution(int N, vector<int> stages) {
-//     vector<int> answer;
-    
-//     sort(stages.begin(), stages.end());
-
-//     auto point = stages.begin();
-//     int stage_index = 0;
-//     int count = 0;
-//     int temp = *stages.begin();
-//     int users = stages.size();
-//     int *failure = new int[N];
-
-//     for(int i = 0; i < users; i++) {
-//         if(temp == stages[i]) {
-//             count++;
-//         }
-//         else {
-//             failure[stage_index] = count;
-//             temp = stages[i];
-//             count++;
-//         }
-//     }
-
-//     for (int i = 0; i < N; i++) {
-//         cout << failure[i];
-//     }
-    
-//     return answer;
-// }
-
-#include <string>
 #include <vector>
 #include <algorithm>
-#include <iostream>
+#include <utility>
 
 using namespace std;
 
 vector<int> solution(int N, vector<int> stages) {
     vector<int> answer;
-    
+    vector<pair<int, float>> v;
     sort(stages.begin(), stages.end());
     
-    int now = *stages.begin();
-    int count = 0;
-    int stage_index = 0;
-    int *failure = new int[N];
-    
-    for(int i = 0; i < stages.size(); i++) {
-        if(now == stages[i]) {
-            count++;
+    int user = stages.size();
+    int finish_count = 0;
+    double temp;
+
+    for(int i = 0; i < N; i++) {
+        user -= finish_count;
+        if(user >= 1) {
+            finish_count = count(stages.begin(), stages.end(), i+1);
+            temp = finish_count / float(user);
+            v.push_back(make_pair(i+1, temp));
         }
-        else{
-            failure[stage_index] = count;
-            stage_index++;
-            now = stages[i];
-            count = 1;
+        else {
+            v.push_back(make_pair(i+1, 0));
         }
     }
 
-    for (int i = 0; i < N; i++) {
-        cout << stages[i] << " ";
+    stable_sort(v.begin(), v.end(), [](const auto& a, const auto& b) {return a.second > b.second; });
+    for(auto it = 0; it < N; it++) {
+        answer.push_back(v[it].first);
     }
-    
+
     return answer;
 }
