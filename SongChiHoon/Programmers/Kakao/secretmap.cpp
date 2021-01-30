@@ -1,8 +1,9 @@
 #include <string>
 #include <vector>
- 
+#include <bitset>
+
 using namespace std;
- 
+
 vector<string> solution(int n, vector<int> arr1, vector<int> arr2) {
     vector<string> answer;
 
