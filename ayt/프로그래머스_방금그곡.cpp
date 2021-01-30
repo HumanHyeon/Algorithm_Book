@@ -6,7 +6,6 @@ using namespace std;
 int time(string mi) {
     int start = 60 * stoi(mi.substr(0, 2)) + stoi(mi.substr(3, 2));
     int end = 60 * stoi(mi.substr(6, 2)) + stoi(mi.substr(9, 2));
-    if (end - start < 0) end += 24 * 60;
     return end - start;
 }
 
