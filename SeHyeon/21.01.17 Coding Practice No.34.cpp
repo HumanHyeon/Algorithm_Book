@@ -1,6 +1,5 @@
 #include <vector>
 #include <algorithm>
-#include <string>
 using namespace std;
 
 bool cmp(const pair<double, int>& a, const pair<double, int>& b) {
