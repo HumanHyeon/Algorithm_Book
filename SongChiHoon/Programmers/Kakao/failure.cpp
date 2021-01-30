@@ -21,7 +21,6 @@ vector<int> solution(int N, vector<int> stages) {
             finish_count = count(stages.begin(), stages.end(), i+1);
             temp = finish_count / float(user);
             v.push_back(make_pair(i+1, temp));
-            cout << v[i].second;
         }
         else {
             v.push_back(make_pair(i+1, 0));
@@ -33,8 +32,6 @@ vector<int> solution(int N, vector<int> stages) {
     for(auto it = 0; it < N; it++) {
         answer.push_back(v[it].first);
     }
-    
-    cout << v[0].second;
 
     return answer;
 }
