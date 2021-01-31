@@ -18,9 +18,7 @@ string solution(string new_id) {
     string tmp = "";
     int dot = -2;
     for (int i = 0; i < new_id.size(); i++) {
-        if (new_id[i] == '.' && new_id[i + 1] == '.') {
-                i++;
-        }
+        if (new_id[i] == '.' && new_id[i + 1] == '.')  i++;
         tmp += new_id[i];
     }
     new_id = tmp;
