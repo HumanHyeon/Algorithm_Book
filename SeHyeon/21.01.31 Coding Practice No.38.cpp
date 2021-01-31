@@ -38,9 +38,8 @@ string solution(string new_id) {
     //step 7
     if (new_id.size() <= 2) {
         char last = new_id[new_id.size() - 1];
-        for( ; new_id.size() == 3; ){
+        for( ; new_id.size() == 3; )
             new_id += last;
-        }
     }
 
     return new_id;
