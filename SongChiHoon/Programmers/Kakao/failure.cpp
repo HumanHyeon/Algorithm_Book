@@ -29,6 +29,7 @@ vector<int> solution(int N, vector<int> stages) {
     }
 
     stable_sort(v.begin(), v.end(), [](const auto& a, const auto& b) {return a.second > b.second; });
+    
     for(auto it = 0; it < N; it++) {
         answer.push_back(v[it].first);
     }
