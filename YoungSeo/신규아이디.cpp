@@ -5,6 +5,7 @@ using namespace std;
 
 string solution(string new_id) {
 	string answer = "";
+	string s2 = "";
     // 1단계
 	for(char& c:new_id)
 		c=tolower(c);
@@ -15,18 +16,15 @@ string solution(string new_id) {
 			continue;
 		answer.push_back(c);
 	}
-    // 3단계
-	string temp;
-	for(int i=0;i<answer.size();i++){
-		if(answer[i]=='.'){
-			temp.push_back('.');
-			while(i<answer.size() && answer[i]=='.') i++;
-			i--;
-		}
-		else temp.push_back(answer[i]);
-	}
-	answer=temp;
-
+  
+    //3단계
+    for(int i = 1; i < answer.size(); ){
+        if (answer[i] == '.' && answer[i - 1] == '.'){
+            answer.erase(answer.begin() + i);
+            continue;
+        }
+        else i++;
+    }
     // 4단계
 	if(answer[0]=='.') 
         answer=answer.substr(1);
