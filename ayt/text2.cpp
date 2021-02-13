@@ -1,5 +1,5 @@
 #include <iostream>
 
 int main(){
-    std::cout << "테스트\n";
+    std::cout << "테스트2\n";
 }
