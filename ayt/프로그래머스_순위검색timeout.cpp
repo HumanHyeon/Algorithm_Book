@@ -38,7 +38,7 @@ vector<int> solution(vector<string> info, vector<string> query) {
 
             loc = info[j].find(" ",loc) + 1;
             string iScore = info[j].substr(loc, info[j].find(" ", loc) - loc);
-            if (stoi(qScore) <= stoi(iScore) || qScore == "-") ++cnt;
+            if (stoi(qScore) <= stoi(iScore)) ++cnt;
         }
         answer.push_back(cnt);
     }
