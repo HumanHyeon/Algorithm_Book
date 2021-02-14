@@ -37,7 +37,7 @@ string solution(string new_id) {
             temp += ret.back();
             break;
         }
-        if(ret[point] == '.' && ret[point++] == '.') {
+        if(ret[point] == '.' && ret[point+1] == '.') {
             temp += '.';
             point += 1;
         }
@@ -46,9 +46,8 @@ string solution(string new_id) {
         }
     }
 
-    if(temp.front() == ".")
-    {
-        
+    if(temp.front() == ".") {
+
     }
 
     cout << temp;
