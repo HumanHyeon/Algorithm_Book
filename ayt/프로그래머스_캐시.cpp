@@ -23,7 +23,7 @@ int solution(int cacheSize, vector<string> cities) {
             answer += 1;
         }
         else {
-            if (cacheSize <= dq.size()) dq.pop_back();
+            if (cacheSize == dq.size()) dq.pop_back();
             dq.push_front(elem);
             answer += 5;
         }
