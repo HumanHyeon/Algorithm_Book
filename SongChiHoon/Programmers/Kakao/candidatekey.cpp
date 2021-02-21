@@ -49,8 +49,11 @@ void isCandinate(vector<vector<string>> relation){
             answer++;
             int Size=combi.size();
             for(int i=0;i<Size;i++){
-                if(i==k)continue;
+                if(i==k){
+                    continue;
+                }
                 int count=0;
+                
                 for(int l=0;l<combi[i].size();l++){
                     for(int m=0;m<combi[k].size();m++){
                         if(combi[i][l]==combi[k][m])count++;
@@ -115,7 +118,8 @@ int solution(vector<vector<string>> relation) {
         temptemp.erase(unique(temptemp.begin(),temptemp.end()),temptemp.end());
 
         if(temptemp.size()==row){
-            answer++;continue;
+            answer++;
+            continue;
         }
 
         else{
