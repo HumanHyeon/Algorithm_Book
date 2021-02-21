@@ -17,14 +17,14 @@ int solution(int cacheSize, vector<string> cities) {
         transform(cities[i].begin(), cities[i].end(), cities[i].begin(), ::tolower);
         auto itr = find(cache.begin(), cache.end(), cities[i]);
         
-        //캐시히트
+        //캐시미스
         if(itr == cache.end())
         {
             if(cache.size() == cacheSize)
                 cache.erase(cache.begin());
             answer += MISS;
         }
-        else //캐시미스
+        else //캐시히트
         {
             answer+= HIT;
             cache.erase(itr);
