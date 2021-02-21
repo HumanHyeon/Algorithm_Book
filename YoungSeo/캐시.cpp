@@ -20,14 +20,15 @@ int solution(int cacheSize, vector<string> cities) {
         //캐시미스
         if(itr == cache.end())
         {
-            if(cache.size() == cacheSize)
+            if(cache.size() >= cacheSize)
                 cache.erase(cache.begin());
             answer += MISS;
         }
         else //캐시히트
         {
+           
+            cache.erase(itr); 
             answer+= HIT;
-            cache.erase(itr);
         }
         cache.push_back(cities[i]);
     }
