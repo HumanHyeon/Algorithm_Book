@@ -21,10 +21,9 @@ string solution(int n, int t, int m, int p) {
             num /= n;
         }
         
-        for (int i = 0; i < tmp.size(); ++i) {
+        for (int i = 0; i < tmp.size(); ++i,++order) {
             if (order > m) order = 1;
             if (order == p) answer += tmp[i];
-            ++order;
 
             if (answer.size() == t) break;
         }
