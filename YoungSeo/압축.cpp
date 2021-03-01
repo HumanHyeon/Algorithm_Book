@@ -19,22 +19,22 @@ vector<int> solution(string msg) {
     for(int i=0; i<26; i++) dic.push_back(make_pair(string(1, 'A'+i), i+1));
     
     int sNum= 27;
-    string cur, before; 
+    string wc,w; 
     for(int i=0, j=0; i<msg.size();){
     
         for(j=1; i+j<=msg.size(); j++){ // 현재 입력과 일치하는 가장 긴 문자열 찾기
-            cur = msg.substr(i, j); 
-            if(isInDic(cur)) { 
-                before = cur; 
+            wc = msg.substr(i, j); 
+            if(isInDic(wc)) { 
+                w = wc; 
                 continue;
             } else { // 사전에 없으면 answer에 색인번호 추가
-                answer.push_back(isInDic(before));
+                answer.push_back(isInDic(w));
                 break;
             }
         }
-        dic.push_back(make_pair(cur, sNum++));
+        dic.push_back(make_pair(wc, sNum++));
         i+=(j-1); //입력에서 w길이만큼 제거
     }
-    answer.push_back(isInDic(cur));
+    answer.push_back(isInDic(wc));
     return answer;
 }
