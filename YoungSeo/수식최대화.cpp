@@ -14,16 +14,16 @@ long long cal(string order)
       {
           if(temp_operand[j] == order[i])
           {
-              long long temp1 = stol(temp_num[j]), temp2 = stoll(temp_num[j+1]);
+              long long temp1 = stoll(temp_num[j]), temp2 = stoll(temp_num[j+1]);
               temp_num.erase(temp_num.begin() + j);
               temp_num.erase(temp_num.begin() + j); 
-              string temp_input;
+              string result;
          
-              if(order[i] == '*') temp_input = to_string(temp1 * temp2);
-              else if(order[i] == '-') temp_input = to_string(temp1 - temp2);
-              else temp_input = to_string(temp1 + temp2);
-              .
-              temp_num.insert(temp_num.begin() + j, temp_input);
+              if(order[i] == '*') result = to_string(temp1 * temp2);
+              else if(order[i] == '-') result = to_string(temp1 - temp2);
+              else  result = to_string(temp1 + temp2);
+              
+              temp_num.insert(temp_num.begin() + j, result);
              
               temp_operand.erase(temp_operand.begin() + j);
               
