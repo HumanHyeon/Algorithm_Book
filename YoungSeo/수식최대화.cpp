@@ -52,12 +52,12 @@ long long solution(string expression) {
   }
   num.push_back(temp); 
   //6가지의 경우의수 중 가장 큰 값 찾기
-  long long r = abs(cal("*+-"));
-  r = max(r, abs(cal("*-+")));
-  r = max(r, abs(cal("+*-")));
-  r = max(r, abs(cal("+-*")));
-  r = max(r, abs(cal("-+*")));
-  r = max(r, abs(cal("-*+")));
-  answer = r;
+  long long MAX = abs(cal("*+-"));
+  MAX = max(MAX, abs(cal("*-+")));
+  MAX = max(MAX, abs(cal("+*-")));
+  MAX = max(MAX, abs(cal("+-*")));
+  MAX = max(MAX, abs(cal("-+*")));
+  MAX = max(MAX, abs(cal("-*+")));
+  answer = MAX;
   return answer;
 }
