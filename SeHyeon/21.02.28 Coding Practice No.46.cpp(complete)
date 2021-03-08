@@ -36,7 +36,6 @@ long long solution(string expression) {
     }
     ex.push_back(tmp);
 
-  
     tmp = "";
     for (auto fetch : priority) {
         auto tmpExp = ex;
