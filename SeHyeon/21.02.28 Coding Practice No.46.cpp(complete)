@@ -1,0 +1,59 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+string cal(long long num1, long long num2, char op) {
+    if (op == '+')   return to_string(num1 + num2);
+    if (op == '-')   return to_string(num1 - num2);
+    if (op == '*')   return to_string(num1 * num2);
+}
+
+long long solution(string expression) {
+    long long answer = -1;
+
+    vector<vector<char>> priority = {
+        { '+', '-', '*' },
+        { '+', '*', '-' },
+        { '-', '+', '*' },
+        { '-', '*', '+' },
+        { '*', '+', '-' },
+        { '*', '-', '+' }
+    };
+
+    vector<string> ex;
+    string tmp = "";
+    for (int i = 0; i < expression.size(); i++) {
+        if (expression[i] >= '0' && expression[i] <= '9')    tmp += expression[i];
+        else {
+            ex.push_back(tmp);
+            tmp = "";
+            tmp += expression[i];
+            ex.push_back(tmp);
+            tmp = "";
+        }
+    }
+    ex.push_back(tmp);
+
+  
+    tmp = "";
+    for (auto fetch : priority) {
+        auto tmpExp = ex;
+        for (auto op : fetch) {
+            for (int i = 0; i < tmpExp.size(); i++) {
+                tmp += op;
+                if (tmpExp[i] == tmp) {
+                    tmpExp[i] = cal(stoll(tmpExp[i - 1]), stoll(tmpExp[i + 1]), op);
+                    tmpExp.erase(tmpExp.begin() + i - 1);
+                    i--;
+                    tmpExp.erase(tmpExp.begin() + i + 1);
+                }
+                tmp = "";
+            }
+        }
+        answer = answer < abs(stoll(tmpExp[0])) ? abs(stoll(tmpExp[0])) : answer;
+    }
+
+    return answer;
+}
