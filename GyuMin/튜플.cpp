@@ -22,7 +22,7 @@ vector<int> solution(string s)
 
     for (int i = 1; i < s.size() - 1; i++)
     {
-        if ((s[i] >= '1') && (s[i] <= '9'))
+        if ((s[i] >= '0') && (s[i] <= '9'))
             a.push_back(s[i]);
 
         else if (s[i] == ',')
