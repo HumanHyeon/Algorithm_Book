@@ -23,8 +23,8 @@ vector<int> solution(string s) {
       int size = tmp.size();
       tmp = "";
       while(size>0){
-        if(size%2==1) tmp+="0";
-        else tmp+="1";
+        if(size%2==1) tmp+="1";
+        else tmp+="0";
         size /=  2;
       }
       reverse(tmp.begin(), tmp.end());
