@@ -2,7 +2,7 @@
 #include <vector>
 #include <map>
 #include <algorithm>
-#include <iostream>
+//#include <iostream>
 
 using namespace std;
 
@@ -22,6 +22,7 @@ vector<int> solution(vector<string> genres, vector<int> plays) {
 	bool tf = false;
 	while (1) {
 		if (tf) break;
+		size = answer.size();
 		int a = 0;
 		string b = "";
 
@@ -50,19 +51,18 @@ vector<int> solution(vector<string> genres, vector<int> plays) {
 			}
 		}
 
-		for (auto elem : iTmp)
+		/*for (auto elem : iTmp)
 			cout << elem << " ";
-		cout << endl;
+		cout << endl;*/
 
 		m[b] = -999999999;
 
-		if (iTmp.size() != 1)
-			sort(iTmp.rbegin(), iTmp.rend());
+		/*if (iTmp.size() != 1)
+			sort(iTmp.rbegin(), iTmp.rend());*/
 
 		for (int i = 0; i < iTmp.size(); ++i)
 			answer.push_back(iTmp[i]);
 
-		size = answer.size();
 		if (answer.size() == size) tf = true;
 	}
 
