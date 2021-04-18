@@ -16,7 +16,7 @@ def solution(n, computers):
         remainder.append(i)
 
     while len(remainder) != 0:
-        dfs(0, computers, remainder)
+        dfs(remainder[0], computers, remainder)
         answer += 1
     
     print(answer)
