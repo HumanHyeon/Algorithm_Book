@@ -15,7 +15,7 @@ bool dfs(int cur, vector<vector<int>>& computers)
             dfs(index, computers);
         index++;
     }
-    return true;
+    return (true);
 }
 
 int solution(int n, vector<vector<int>> computers) {
