@@ -20,3 +20,5 @@ def solution(s):
         return False
         
     print('Hello Python')
+
+print(solution("(())"))

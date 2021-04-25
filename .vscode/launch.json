@@ -5,10 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
             "name": "(gdb) 시작",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/a.exe",
+            "program": "${workspaceFolder}",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
