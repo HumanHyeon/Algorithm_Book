@@ -9,8 +9,7 @@ vector<vector<int>> solution(vector<vector<int>> arr1, vector<vector<int>> arr2)
 
     vector<vector<int>> answer(arr1_row, vector<int>(arr2_column));
     for (int i = 0; i < arr1_row; i++)
-        for (int j = 0; j < arr2_column; j++)
-        {
+        for (int j = 0; j < arr2_column; j++) {
             int val = 0;
             for (int pos = 0; pos < arr1_column; pos++)
                 val += (arr1[i][pos] * arr2[pos][j]);
