@@ -1,3 +1,5 @@
+https://programmers.co.kr/learn/courses/30/lessons/12952
+
 #include <cstdbool>
 #include <cstdlib>
 #include <cstring>
