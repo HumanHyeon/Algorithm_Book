@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <bitset>
+using namespace std;
+
+long long fx(long long num) {
+    bitset<64> stdBs = num;
+    
+    for (long long i = num + 1; ; i++) {
+        bitset<64> cmpBs = i;
+        bitset<64> diffBs = (stdBs ^ cmpBs);
+
+        if (diffBs.count() <= 2 && diffBs.count() >= 1)
+            return i;
+    }
+}
+
+vector<long long> solution(vector<long long> numbers) {
+    vector<long long> answer;
+    
+    for (auto fetch : numbers)
+        answer.emplace_back(fx(fetch));
+    return answer;
+}
