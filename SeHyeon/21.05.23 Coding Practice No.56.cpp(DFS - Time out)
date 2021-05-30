@@ -1,9 +1,9 @@
 #include <string>
 #include <vector>
-#define UP 0
+#define RIGHT 0
 #define DOWN 1
 #define LEFT 2
-#define RIGHT 3
+#define UP 3
 using namespace std;
 
 int answer;
@@ -20,22 +20,27 @@ bool is_promising(vector<vector<int> >& path, position pos, int cost) {
         return false;
     if (path[pos.y][pos.x] == 1)
         return false;
+    return true;
 }
 
 int calc_cost(int beforePostion, int flag, int cost) {
-    if (beforePostion == UP)
+    if (beforePostion == UP) {
         if (flag == DOWN)
             return cost + 100;
-    else if (beforePostion == DOWN)
+    }
+    else if (beforePostion == DOWN) {
         if (flag == UP)
             return cost + 100;
-    else if (beforePostion == LEFT)
+    }
+    else if (beforePostion == LEFT) {
         if (flag == RIGHT)
             return cost + 100;
-    else if (beforePostion == RIGHT)
+    }
+    else if (beforePostion == RIGHT) {
         if (flag == LEFT)
             return cost + 100;
-    return cost + 500;
+    }
+    return cost + 600;
 }
 
 void dfs(vector<vector<int> > path, int beforePostion, position nowPos, int cost) {
@@ -44,7 +49,7 @@ void dfs(vector<vector<int> > path, int beforePostion, position nowPos, int cost
             answer = cost;
         return;
     }
-    path[nowPos.y][nowPos.y] = 1;
+    path[nowPos.y][nowPos.x] = 1;
     for (int flag = 0; flag < 4; flag++) {
         position nextPos = nowPos;
         if (flag == beforePostion)
@@ -52,25 +57,25 @@ void dfs(vector<vector<int> > path, int beforePostion, position nowPos, int cost
         if (flag == UP) {
             nextPos.y--;
             if (is_promising(path, nextPos, calc_cost(beforePostion, flag, cost))) {
-                dfs(path, UP, nextPos, calc_cost(beforePostion, flag, cost));
+                dfs(path, DOWN, nextPos, calc_cost(beforePostion, flag, cost));
             }
         }
         else if (flag == DOWN) {
             nextPos.y++;
             if (is_promising(path, nextPos, calc_cost(beforePostion, flag, cost))) {
-                dfs(path, DOWN, nextPos, calc_cost(beforePostion, flag, cost));
+                dfs(path, UP, nextPos, calc_cost(beforePostion, flag, cost));
             }
         }
         else if (flag == LEFT) {
             nextPos.x--;
             if (is_promising(path, nextPos, calc_cost(beforePostion, flag, cost))) {
-                dfs(path, LEFT, nextPos, calc_cost(beforePostion, flag, cost));
+                dfs(path, RIGHT, nextPos, calc_cost(beforePostion, flag, cost));
             }
         }
         else if (flag == RIGHT) {
             nextPos.x++;
             if (is_promising(path, nextPos, calc_cost(beforePostion, flag, cost))) {
-                dfs(path, RIGHT, nextPos, calc_cost(beforePostion, flag, cost));
+                dfs(path, LEFT, nextPos, calc_cost(beforePostion, flag, cost));
             }
         }
     }
@@ -81,11 +86,15 @@ int solution(vector<vector<int> > board) {
     position pos;
 
     board[0][0] = 1;
-    pos.x = 0;
-    pos.y = 1;
-    dfs(board, LEFT, pos, 100);
-    pos.x = 1;
-    pos.y = 0;
-    dfs(board, UP, pos, 100);
+    if (board[1][0] != 1) {
+        pos.x = 0;
+        pos.y = 1;
+        dfs(board, UP, pos, 100);
+    }
+    if (board[0][1] != 1) {
+        pos.x = 1;
+        pos.y = 0;
+        dfs(board, LEFT, pos, 100);
+    }
     return answer;
 }
