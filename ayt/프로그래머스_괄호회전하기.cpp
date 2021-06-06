@@ -1,36 +1,41 @@
 #include <string>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
 bool promising(string s) {
-    int n1=0, n2=0, n3=0;
-    for(int i=0;i<s.size();i++) {
-        if(n1<0 || n2<0 || n3<0) break;
-        switch (s[i]) {
+    stack<char> brackets;
+    
+    for (int i = 0; i < s.length(); i++) {
+        switch(s[i]) {
             case '(':
-                n1 += 1;
-                break;
-            case ')':
-                n1 -= 1;
-                break;
+                brackets.push('r'); break;  //round
             case '[':
-                n2 += 1;
+                brackets.push('s'); break;  //square
+            case '{':
+                brackets.push('c'); break;  //curly
+            case ')':
+                if (brackets.empty() || brackets.top() != 'r')
+                    return false;
+                brackets.pop();
                 break;
             case ']':
-                n2 -= 1;
-                break;
-            case '{':
-                n3 += 1;
+                if (brackets.empty() || brackets.top() != 's')
+                    return false;
+                brackets.pop();
                 break;
             case '}':
-                n3 -= 1;
+                if (brackets.empty() || brackets.top() != 'c')
+                    return false;
+                brackets.pop();
                 break;
         }
     }
-    
-    if(!n1 && !n2 && !n3) return true;
-    return false;
+    if (brackets.empty())
+        return true;
+    else
+        return false;
 }
 
 int solution(string s) {
