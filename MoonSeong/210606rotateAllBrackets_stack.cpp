@@ -35,6 +35,8 @@ bool isRightBrackets(string s) {
     }
     if (brackets.empty())
         return true;
+    else
+        return false;
 }
 
 int solution(string s) {
