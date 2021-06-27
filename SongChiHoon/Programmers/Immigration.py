@@ -1,3 +1,4 @@
+  
 def solution(n, times) :
     answer = 0
     left = 1
@@ -7,14 +8,14 @@ def solution(n, times) :
         mid = (left + right) // 2
         total = 0
     
-    for t in times :
-        total += mid // t
+        for t in times :
+            total += mid // t
     
-    if total >= n :
-        right = mid
+        if total >= n :
+            right = mid
         
-    else :
-        left = mid + 1
+        else :
+            left = mid + 1
         
     answer = left
     
