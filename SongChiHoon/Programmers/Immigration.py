@@ -1,21 +1,12 @@
-def solution(n, times) :
-    answer = 0
-    left = 1
-    right = max(times) * n
-    
-    while left < right :
-        mid = (left + right) // 2
-        total = 0
-    
-        for t in times :
-            total += mid // t
-    
-        if total >= n :
-            right = mid
-        
-        else :
-            left = mid + 1
-        
-    answer = left
-    
-    return answer
+def impossible(n, middle, times):
+    return sum([middle // x for x in times]) < n
+
+def solution(n, times):
+    left, right = 1, max(times)*n
+    while left < right:
+        middle = (left + right) // 2
+        if impossible(n, middle, times): 
+            left = middle + 1
+        else: 
+            right = middle
+    return left
