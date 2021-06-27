@@ -4,25 +4,25 @@
 using namespace std;
 
 long long solution(int n, vector<int> times) {
-    long long answer = 0;
-    long long start, end, mid;
-    long long minTimes = 10000000000;
     long long maxTimes = 0;
     
-    for (auto elem : times) {
-        if(elem<minTimes) minTimes = elem;
+    for (auto elem : times) 
         if(elem>maxTimes) maxTimes = elem;
-    }
     
-    start = minTimes * n;
-    end = maxTimes * n;
-    
-    int i = 0;
+    long long start = 1;
+    long long end = maxTimes * n;
+    long long i;
     
     while(start<=end) {
-        mid = (start + end) / n;
+        long long mid = (start + end) / 2;
+        i = 0;
         
+        for(auto elem : times) {
+            i += mid / elem;
+            if(i>=n) end = mid - 1;
+        }
+        if(i<n) start = mid + 1;
     }
     
-    return answer;
+    return start;
 }
