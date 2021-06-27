@@ -14,7 +14,7 @@ long long solution(int n, vector<int> times) {
         if(elem>maxTimes) maxTimes = elem;
     }
     
-    start = minTimes;
+    start = minTimes * n;
     end = maxTimes * n;
     
     int i = 0;
