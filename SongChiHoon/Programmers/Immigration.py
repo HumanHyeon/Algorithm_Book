@@ -1,4 +1,3 @@
-  
 def solution(n, times) :
     answer = 0
     left = 1
