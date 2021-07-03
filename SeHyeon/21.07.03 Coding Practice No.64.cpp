@@ -21,10 +21,10 @@ int main() {
 	
 	vector<Pos> pos(m);
 	for (int i = 0; i < m; i++) {
-		cin >> pos[i].x1;
-		cin >> pos[i].y1;
-		cin >> pos[i].x2;
-		cin >> pos[i].y2;
+		scanf("%d", &pos[i].x1);
+		scanf("%d", &pos[i].y1);
+		scanf("%d", &pos[i].x2);
+		scanf("%d", &pos[i].y2);
 	}
 
 	for (int i = 0; i < m; i++) {
