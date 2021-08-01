@@ -1,5 +1,4 @@
 import sys, copy
-
 input = sys.stdin.readline
 
 def move(dir):
