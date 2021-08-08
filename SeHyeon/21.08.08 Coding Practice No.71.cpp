@@ -17,10 +17,8 @@ void solution(string expression) {
 		if (!isOperator(fetch)) 
 			output += fetch;
 		else {	//fetch가 연산자인 경우
-			if (postfix.empty() || fetch == '(') {	//비어있는 경우 바로 넣음, 좌측 괄호도 바로  넣음
+			if (postfix.empty() || fetch == '(')	//비어있는 경우 바로 넣음, 좌측 괄호도 바로  넣음
 				postfix.push(fetch);
-				continue;
-			}
 			//비어있지 않은 경우
 			else if (fetch == ')') {
 				while (postfix.top() != '(') {
@@ -28,23 +26,24 @@ void solution(string expression) {
 					postfix.pop();
 				}
 				postfix.pop();
-				continue;
 			}
 			else if (fetch == '+' || fetch == '-') {
-				if (postfix.top() == '+' || postfix.top() == '-'){
+				while (!postfix.empty() && postfix.top() != '(') {
 					output += postfix.top();
 					postfix.pop();
 				}
+				/*if (postfix.top() == '+' || postfix.top() == '-'){
+					output += postfix.top();
+					postfix.pop();
+				}*/
 				postfix.push(fetch);
-				continue;
 			}
 			else if (fetch == '*' || fetch == '/') {
-				while (postfix.top() == '*' || postfix.top() == '/') {
+				while (!postfix.empty() && (postfix.top() == '*' || postfix.top() == '/')) {
 					output += postfix.top();
 					postfix.pop();
 				}
 				postfix.push(fetch);
-				continue;
 			}
 		}
 	}
@@ -65,6 +64,3 @@ int main() {
 	cin >> input;
 	solution(input);
 }
-//
-//(A+B)*C-D
-//answer : AB + C * D -
