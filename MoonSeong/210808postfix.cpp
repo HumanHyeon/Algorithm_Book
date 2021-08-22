@@ -1,38 +1,67 @@
 #include <iostream>
+#include <stack>
 #include <string>
-#pragma warning (disable:4996)
 
 using namespace std;
 
-string toPostfix(string exp, string operand1, string operand2, string operator1) {
-    int i = 0;
-    while (exp[i] != NULL) {
+int main(void) {
+    string exp;
+    string answer = "";
+    cin >> exp;
+
+    stack<char> s;
+    
+        for (int i = 0; i < exp.length(); i++) {
         switch(exp[i]) {
             case '+':
             case '-':
+                if (s.empty() || s.top() == '(')
+                    s.push(exp[i]);
+                else {
+                    while (true) {
+                        if (s.empty() || s.top() == '(')
+                            break;
+                        answer.push_back(s.top());
+                        s.pop();
+                    }
+                    s.push(exp[i]);
+                }
+                break;
+
             case '*':
             case '/':
-                operator1 = exp[i];
+                if (s.empty() || s.top() == '(')
+                    s.push(exp[i]);
+                else if (s.top() == '*' || s.top() == '/') {
+                    answer.push_back(s.top());
+                    s.pop();
+                    s.push(exp[i]);
+                }
+                else
+                    s.push(exp[i]);
                 break;
             case '(':
+                s.push(exp[i]);
+                break;
             case ')':
-                
+                while (s.top() != '(') {
+                    answer.push_back(s.top());
+                    s.pop();
+                }
+                s.pop();
+                break;
             default:
+                answer.push_back(exp[i]);
+                break;
         }
-
-
-
-
-        i++;
     }
-}
+    
+    while (!s.empty()) {
+        answer.push_back(s.top());
+        s.pop();
+    }
 
+    cout << answer;
 
-int main(void) {
-    string exp;
-    string answer;
-    scanf("%s", &exp);
-
-    answer = toPostfix(exp, NULL, NULL, NULL);
-
+    return 0;
 }
