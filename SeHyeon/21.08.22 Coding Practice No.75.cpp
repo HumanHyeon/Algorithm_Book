@@ -72,3 +72,18 @@ int main() {
 	}
 	cout << solution(n, k, kitWeight);
 }
+
+
+/////////////////////////////////////////////////////////////
+from itertools import combinations, permutations
+
+#Code Part
+n,k = map(int, input().split())
+kitWeight = list(map(int, input().split()))
+kitNum = []
+i = 0
+for i in range(n):
+     kitNum.append(i);
+
+perm = list(combinations(kitNum, n))
+print(perm)
