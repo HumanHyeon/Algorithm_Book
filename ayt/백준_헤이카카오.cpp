@@ -6,7 +6,7 @@ using namespace std;
 
 void solution(int a, float d, float k) {
 	float sum = a * d;
-	vector<double> win;
+	vector<float> win;
 
 	while (d <= 1) {
 		win.push_back(d);
