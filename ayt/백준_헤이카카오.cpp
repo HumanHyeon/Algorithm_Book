@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void solution(int a, double d, double k) {
+void solution(int a, float d, float k) {
 	float sum = a * d;
 	vector<double> win;
 
@@ -27,7 +27,7 @@ int main() {
 	int a, d, k;
 	cin >> a >> d >> k;
 
-	solution(a, (double)d/100, (double)k/100);
+	solution(a, (float)d/100, (float)k/100);
 
 	return 0;
 }
