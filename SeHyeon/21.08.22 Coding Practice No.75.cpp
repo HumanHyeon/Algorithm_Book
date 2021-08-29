@@ -87,3 +87,4 @@ for i in range(n):
 
 perm = list(combinations(kitNum, n))
 print(perm)
+/////////////////////////////////////////////////////////////
