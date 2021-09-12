@@ -9,7 +9,7 @@ int solution(string word) {
     for (int i = 0; i < word.size(); i++) {
         int index;
         
-        for (index = 0; index < 5; i++)
+        for (index = 0; index < 5; index++)
             if (charset[index] == word[i])
                 break;
         answer += (expr[i] * (index) + 1);
