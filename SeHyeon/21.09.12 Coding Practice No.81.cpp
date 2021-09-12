@@ -17,3 +17,14 @@ int solution(string word) {
 
     return answer;
 }
+
+//#include <string>
+//using namespace std;
+
+//int solution(string word) {
+//    int answer = 0;
+//
+//    for (int i = 0; i < word.size(); i++)
+//        answer += string("AEIOU").find(word[i]) * expr[i] + 1;
+//    return answer;
+//}
