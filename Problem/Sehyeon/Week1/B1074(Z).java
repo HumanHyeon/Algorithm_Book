@@ -2,56 +2,59 @@ https://www.acmicpc.net/problem/1074
 
 import java.util.Scanner;
 
-public class B2839 {
+public class B1074 {
 	static int N;
+	static int R;
+	static int C;
 	static int answer;
 	
-	static void brute_force(int n, int cnt) {
-		if (n == 0)
-			answer = Math.min(answer, cnt);
-		if (n < 3 || answer <= cnt)
-			return ;
+	static int findSection(int halfSideSize, int y, int x) {
+		int section = 0;
 		
-		brute_force(n - 5, cnt + 1);
-		brute_force(n - 3, cnt + 1);
+		if (R >= halfSideSize + y)
+			section += 2;
+		if (C >= halfSideSize + x)
+			section += 1;
+		return (section);
 	}
 	
-	static void dp(int n) {
-		int[] cache = new int[n + 1];
+	static void divideConquer(int sideSize, int y, int x) {
+		int section;
+		int oneSectionSize;
+		int halfSideSize;
 		
-		cache[3] = cache[5] = 1;
-		for (int i = 6; i <= n; i++) {
-			if (cache[i - 3] != 0)
-				cache[i] = cache[i - 3] + 1;
-			if (cache[i - 5] != 0) {
-				if (cache[i] == 0)
-					cache[i] = cache[i - 5] + 1;
-				else
-					cache[i] = Math.min(cache[i], cache[i - 5] + 1);
-				
-			}
+		if (sideSize == 1)		
+			return ;
+		
+		halfSideSize = sideSize / 2;
+		section = findSection(halfSideSize, y, x);
+		oneSectionSize = (int)Math.pow(halfSideSize, 2);
+		
+		answer += (oneSectionSize * section);
+		if (section == 1)
+			x += halfSideSize;
+		else if (section == 2)
+			y += halfSideSize;
+		else if (section == 3) {
+			y += halfSideSize;
+			x += halfSideSize;	
 		}
-		answer = (cache[n] != 0) ? cache[n] : -1;
+		divideConquer(halfSideSize, y, x);
 	}
 	
 	static void solution() {
-		//brute_force(N, 0);
-		if (N <= 5) {
-			if (N == 3 || N == 5)
-				answer = 1;
-			return;
-		}
-		dp(N);
+		divideConquer((int)Math.pow(2, N), 0, 0);
 	}
 	
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
 		N = scan.nextInt();
+		R = scan.nextInt();
+		C = scan.nextInt();
 		
-		answer = -1;
+		answer = 0;
 		solution();
 		System.out.println(answer);
 	}
-
 }
