@@ -1,4 +1,4 @@
-// https://www.acmicpc.net/source/39081338
+// https://www.acmicpc.net/problem/16926
 
 #include <iostream>
 #include <cstring>
