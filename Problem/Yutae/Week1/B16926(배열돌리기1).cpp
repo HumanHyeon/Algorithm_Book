@@ -1,3 +1,5 @@
+// https://www.acmicpc.net/source/39081338
+
 #include <iostream>
 #include <cstring>
 
