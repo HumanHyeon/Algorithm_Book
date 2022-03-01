@@ -1,4 +1,4 @@
-# https://www.acmicpc.net/problem/16236
+// https://www.acmicpc.net/problem/16236
 
 #include <iostream>
 #include <algorithm>
