@@ -1,4 +1,4 @@
-# https://www.acmicpc.net/problem/17144
+// https://www.acmicpc.net/problem/17144
 
 #include <iostream>
 #include <vector>
